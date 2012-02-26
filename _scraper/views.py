@@ -25,7 +25,7 @@ def scraper(request):
 
 def get_scrape_data():
     scrape = os.path.join(settings.SITE_DIRECTORY,
-                          '_scraper/js/scrape.coffee')
+                          'js/scrape.coffee')
 
     scraper = Popen(['coffee', scrape], stdin=PIPE, stdout=PIPE)
     scraper.stdin.close()
