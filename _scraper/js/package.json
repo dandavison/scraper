@@ -1,0 +1,12 @@
+{
+    "name": "scraper",
+    "description": "Scrape most popular articles from various news sites",
+    "version": "0.0.1",
+    "author": "Dan Davison <dandavison7@gmail.com>",
+    "dependencies": {
+	"coffee-script": "1.2.x",
+	"jsdom": "0.2.x",
+	"request": "1.9.x"
+    },
+    "engines": { "node": ">= 0.4.4" }
+}

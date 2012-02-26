@@ -1,0 +1,27 @@
+body {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #242424;
+    background-color: #ffffff;
+}
+.site-title {
+    font-size: 21px;
+    font-weight: bold;
+    padding-top: 24px;
+    padding-bottom: 5px;
+}
+thead {
+    font-weight: bold;
+    font-size: 16px;
+}
+a {
+    text-decoration: none;
+    color: #900;
+    font-size: 14px;
+}
+a:hover {
+    color: #ff9900;
+}
+a:visited {
+    color: #ff9000;
+}

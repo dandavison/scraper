@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Scraper</title>
+    <link rel='stylesheet' href='/static/css/scraper.css' type='text/css'/>
+  </head>
+  <body>
+    {% for name, site_data in data %}
+    <div class="site-data">
+      <div class="site-title">{{ name }} </div>
+    <table>
+      <thead>
+        {% for column in site_data.columns %}
+        <td> {{ column }} </td>
+        {% endfor %}
+      </thead>
+      <tbody>
+        {% for row in site_data.rows %}
+        <tr>
+          {% for link in row %}
+	  <td><a href={{ link.url }}>{{ link.text }}</a></td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    {% endfor %}
+  </body>
+</html>
+
