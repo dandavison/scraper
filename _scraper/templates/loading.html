@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>Scraper</title>
+    <link rel='stylesheet' href='/static/css/scraper.css' type='text/css'/>
+  </head>
+  <body>
+    <div class='vertical-padding'></div>
+    <img src='/static/img/nyantocat.gif' class='loading-image'></img>
+    <h4>Credit: <a href="http://www.cameronmcefee.com/">Cameron McEfee</a> / <a href="http://github.com">github</a></h4>
+    <script type="text/javascript">
+      window.location = "{% url _scraper.views.scraper %}";
+    </script>
+  </body>
+</html>

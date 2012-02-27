@@ -25,3 +25,11 @@ a:hover {
 a:visited {
     color: #ff9000;
 }
+.vertical-padding {
+    height: 100px;
+}
+img.loading-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -7,6 +7,12 @@ from django.db import settings
 from django.shortcuts import render_to_response
 
 
+def loading(request):
+    return render_to_response(
+        'loading.html',
+        {})
+
+
 def scraper(request):
     def reshape(data):
         return {
