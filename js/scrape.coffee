@@ -14,7 +14,7 @@ class Scraper
                 return
             jsdom.env
                 html: body
-                scripts: ['http://code.jquery.com/jquery-1.5.min.js'],
+                scripts: ["http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"],
                 (error, window) =>
                     if error
                         data[@name]['Error'] = @make_fake_entry 'Error loading jquery'
