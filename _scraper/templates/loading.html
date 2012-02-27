@@ -8,7 +8,7 @@
     <a href="{% url _scraper.views.loading %}">
       <img src='/static/img/nyantocat.gif' class='loading-image'></img>
     </a>
-    <h4>Credit: <a href="http://www.cameronmcefee.com/">Cameron McEfee</a> / <a href="http://github.com">github</a></h4>
+    <div class="credit">Credit: <a href="http://www.cameronmcefee.com/">Cameron McEfee</a> / <a href="http://github.com">github</a></div>
 {% if not nofetch %}
     <script type="text/javascript">
       window.location = "{% url _scraper.views.scraper %}";
