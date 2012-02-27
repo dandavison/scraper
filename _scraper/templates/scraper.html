@@ -25,6 +25,12 @@
     </table>
     </div>
     {% endfor %}
+
+    <!-- Make it so that browser reload will hit the loading page -->
+    <script type="text/javascript">
+      window.history.pushState({}, "", "{% url _scraper.views.loading %}");
+    </script>
+
   </body>
 </html>
 
