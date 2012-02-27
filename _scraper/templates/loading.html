@@ -5,7 +5,9 @@
   </head>
   <body>
     <div class='vertical-padding'></div>
-    <img src='/static/img/nyantocat.gif' class='loading-image'></img>
+    <a href="{% url _scraper.views.loading %}">
+      <img src='/static/img/nyantocat.gif' class='loading-image'></img>
+    </a>
     <h4>Credit: <a href="http://www.cameronmcefee.com/">Cameron McEfee</a> / <a href="http://github.com">github</a></h4>
 {% if not nofetch %}
     <script type="text/javascript">
