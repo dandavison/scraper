@@ -13,6 +13,12 @@ def loading(request):
         {})
 
 
+def scrapey(request):
+    return render_to_response(
+        'loading.html',
+        {'nofetch': True})
+
+
 def scraper(request):
     def reshape(data):
         return {
@@ -36,4 +42,8 @@ def get_scrape_data():
     scraper = Popen(['coffee', scrape], stdin=PIPE, stdout=PIPE)
     scraper.stdin.close()
 
-    return json.loads(scraper.stdout.read())
+    data = scraper.stdout.read()
+    try:
+        return json.loads(data)
+    except:
+        raise Exception('Error: received\n%s' % data)
