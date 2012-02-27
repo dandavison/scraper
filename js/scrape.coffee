@@ -7,18 +7,26 @@ class Scraper
     scrape: =>
         request uri: @domain + @url, (error, response, body) =>
             data[@name] ?= {}
-            if error and response.statusCode != 200
-                throw "Server returned staus code #{response.statusCode}"
+            if error
+                msg = if response then "status code #{response.statusCode}" else "no response"
+                data[@name]['Error'] = @make_fake_entry "#{@domain + @url} returned #{msg}"
+                callback()
+                return
             jsdom.env
                 html: body
                 scripts: ['http://code.jquery.com/jquery-1.5.min.js'],
                 (error, window) =>
                     if error
-                        throw 'Error loading jquery'
+                        data[@name]['Error'] = @make_fake_entry 'Error loading jquery'
+                        callback()
                     else
                         global.$ = window.jQuery
-                        @_scrape()
-                        callback()
+                        try
+                            @_scrape()
+                        catch err
+                            data[@name]['Error'] = @make_fake_entry err
+                        finally
+                            callback()
 
     get_anchor_text: (a) -> $(a).text()
 
@@ -29,6 +37,9 @@ class Scraper
             data[@name][category] = for a in $anchors.toArray()
                 {text: @get_anchor_text(a).trim(),
                 url: url_getter(a)}
+
+    make_fake_entry: (content) ->
+        [text: content, url: '']
 
 
 class AtlanticWire extends Scraper
