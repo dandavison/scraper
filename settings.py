@@ -15,7 +15,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {}
+DATABASES = {
+    'default': {
+        'engine': 'django.db.backends.sqlite3',
+        'name': 'db.sqlite',
+    }
+}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
