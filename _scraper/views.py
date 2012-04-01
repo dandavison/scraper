@@ -1,10 +1,17 @@
 import os
 import json
+from datetime import datetime
+from datetime import timedelta
 from itertools import izip_longest
 from subprocess import Popen, PIPE
 
 from django.db import settings
 from django.shortcuts import render_to_response
+
+from models import Article
+
+
+SHELF_LIFE = timedelta(days=5)
 
 
 def loading(request):
@@ -19,6 +26,36 @@ def scrapey(request):
         {'nofetch': True})
 
 
+def store_and_filter(data):
+    now = datetime.now()
+    stale = []
+    for site in data:
+        for category in data[site]:
+            fresh = []
+            for article in data[site][category]:
+                _article, created = (
+                    Article.objects
+                    .get_or_create(site=site, title=article['text']))
+                if created:
+                    _article.pub_date = now
+                    _article.save()
+                    fresh.append(article)
+                    print 'New article: %s %s' % (
+                        site, article['text'])
+                else:
+                    if now - _article.pub_date < SHELF_LIFE:
+                        fresh.append(article)
+                        print 'Recent article: %s %s' % (
+                            site, article['text'])
+                    else:
+                        print 'Stale article: %s: %s' % (
+                            site, article['text'])
+
+            data[site][category] = fresh
+
+    return data
+
+
 def scraper(request):
     def reshape(data):
         return {
@@ -27,6 +64,9 @@ def scraper(request):
         }
 
     data = get_scrape_data()
+
+    data = store_and_filter(data)
+
     data = sorted((site, reshape(site_data))
                   for site, site_data in data.iteritems())
 
