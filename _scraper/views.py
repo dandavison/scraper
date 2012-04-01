@@ -40,13 +40,9 @@ def store_and_filter(data):
                     _article.pub_date = now
                     _article.save()
                     fresh.append(article)
-                    print 'New article: %s %s' % (
-                        site, article['text'])
                 else:
                     if now - _article.pub_date < SHELF_LIFE:
                         fresh.append(article)
-                        print 'Recent article: %s %s' % (
-                            site, article['text'])
                     else:
                         print 'Stale article: %s: %s' % (
                             site, article['text'])
