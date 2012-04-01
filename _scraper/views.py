@@ -27,8 +27,8 @@ def scraper(request):
         }
 
     data = get_scrape_data()
-    data = sorted(zip(data.keys(),
-                      map(reshape, data.values())))
+    data = sorted((site, reshape(site_data))
+                  for site, site_data in data.iteritems())
 
     return render_to_response(
         'scraper.html',
