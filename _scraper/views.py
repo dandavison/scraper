@@ -40,14 +40,7 @@ def store_and_filter(data):
                     _article.pub_date = now
                     _article.save()
                     fresh.append(article)
-                else:
-                    if now - _article.pub_date < SHELF_LIFE:
-                        fresh.append(article)
-                    else:
-                        print 'Stale article: %s: %s' % (
-                            site, article['text'])
-
-            data[site][category] = fresh
+                article['age'] = (now - _article.pub_date).total_seconds()
 
     return data
 
