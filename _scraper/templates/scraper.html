@@ -9,7 +9,9 @@
   </head>
   <body>
     <div id="slider"></div>
-    <div>Hiding articles older than <span id="slider-value">-</span> hours.</div>
+    <div>Hiding articles older than <span id="slider-value">-</span> hours
+         (<span id="displayed-articles">-</span> / <span id="total-articles">-</span>)
+    </div>
     {% for name, site_data in data %}
     <div class="site-data">
       <div class="site-title">{{ name }} </div>
