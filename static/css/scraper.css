@@ -36,3 +36,6 @@ img.loading-image {
 .credit {
     text-align: right;
 }
+#slider-container {
+    height: 20px;
+}
