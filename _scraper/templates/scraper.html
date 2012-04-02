@@ -2,8 +2,14 @@
   <head>
     <title>Scraper</title>
     <link rel='stylesheet' href='/static/css/scraper.css' type='text/css'/>
+    <script src="/static/thirdparty/jquery-ui-custom/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="/static/thirdparty/jquery-ui-custom/js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
+    <link rel='stylesheet' href='/static/thirdparty/jquery-ui-custom/css/ui-lightness/jquery-ui-1.8.18.custom.css' type='text/css'/>
+    <script src="/static/js/scraper_client.js" type="text/javascript"></script>
   </head>
   <body>
+    <div id="slider"></div>
+    <div>Hiding articles older than <span id="slider-value">-</span> hours.</div>
     {% for name, site_data in data %}
     <div class="site-data">
       <div class="site-title">{{ name }} </div>
@@ -17,7 +23,7 @@
         {% for row in site_data.rows %}
         <tr>
           {% for link in row %}
-	  <td><a href={{ link.url }}>{{ link.text }}</a></td>
+	  <td><a class="article" href={{ link.url }} age="{{ link.age }}">{{ link.text }}</a></td>
           {% endfor %}
         </tr>
         {% endfor %}
