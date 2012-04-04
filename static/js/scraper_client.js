@@ -31,7 +31,7 @@
       }
       return update_text(info.value, displayed_articles);
     };
-    initial_value = 3 * 24;
+    initial_value = 1 * 24;
     $('#slider').slider({
       min: 1,
       max: 5 * 24,
