@@ -1,17 +1,17 @@
 <html>
   <head>
-    <title>Scrapey</title>
-    <link rel='stylesheet' href='/static/css/scrapey.css' type='text/css'/>
+    <title>Scraper</title>
+    <link rel='stylesheet' href='/static/css/scraper.css' type='text/css'/>
   </head>
   <body>
     <div class='vertical-padding'></div>
-    <a href="{% url app.views.loading %}">
+    <a href="{% url _scraper.views.loading %}">
       <img src='/static/img/nyantocat.gif' class='loading-image'></img>
     </a>
     <div class="credit">Credit: <a href="http://www.cameronmcefee.com/">Cameron McEfee</a> / <a href="http://github.com">github</a></div>
 {% if not nofetch %}
     <script type="text/javascript">
-      window.location = "{% url app.views.scrapey %}";
+      window.location = "{% url _scraper.views.scraper %}";
     </script>
 {% endif %}
   </body>

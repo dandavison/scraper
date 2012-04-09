@@ -20,7 +20,7 @@ def loading(request):
         {})
 
 
-def flying(request):
+def scrapey(request):
     return render_to_response(
         'loading.html',
         {'nofetch': True})
@@ -45,7 +45,7 @@ def store_and_filter(data):
     return data
 
 
-def scrapey(request):
+def scraper(request):
     def reshape(data):
         return {
             'columns': data.keys(),
@@ -60,15 +60,15 @@ def scrapey(request):
                   for site, site_data in data.iteritems())
 
     return render_to_response(
-        'scrapey.html',
+        'scraper.html',
         {'data': data})
 
 
 def get_scrape_data():
-    scraper = os.path.join(settings.SITE_DIRECTORY,
-                          'js/scraper.coffee')
+    scrape = os.path.join(settings.SITE_DIRECTORY,
+                          'js/scrape.coffee')
 
-    scraper = Popen(['coffee', scraper], stdin=PIPE, stdout=PIPE)
+    scraper = Popen(['coffee', scrape], stdin=PIPE, stdout=PIPE)
     scraper.stdin.close()
 
     data = scraper.stdout.read()
