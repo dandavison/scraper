@@ -8,13 +8,13 @@ pip install django
 Install node.js and npm, then:
 
 ```sh
-cd scraper/js && npm install
+cd scrapey/js && npm install
 ```
 
 ## Instructions:
 
 ```sh
-cd scraper && ./manage.py runserver
+cd scrapey && ./manage.py runserver
 open http://localhost:8000/
 ```
 	

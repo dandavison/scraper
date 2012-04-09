@@ -1,11 +1,11 @@
 <html>
   <head>
-    <title>Scraper</title>
-    <link rel='stylesheet' href='/static/css/scraper.css' type='text/css'/>
+    <title>Scrapey</title>
+    <link rel='stylesheet' href='/static/css/scrapey.css' type='text/css'/>
     <script src="/static/thirdparty/jquery-ui-custom/js/jquery-1.7.1.min.js" type="text/javascript"></script>
     <script src="/static/thirdparty/jquery-ui-custom/js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
     <link rel='stylesheet' href='/static/thirdparty/jquery-ui-custom/css/ui-lightness/jquery-ui-1.8.18.custom.css' type='text/css'/>
-    <script src="/static/js/scraper_client.js" type="text/javascript"></script>
+    <script src="/static/js/scrapey_client.js" type="text/javascript"></script>
   </head>
   <body>
     <div id="slider-container"><div id="slider"></div></div>
@@ -36,7 +36,7 @@
 
     <!-- Make it so that browser reload will hit the loading page -->
     <script type="text/javascript">
-      window.history.pushState({}, "", "{% url _scraper.views.loading %}");
+      window.history.pushState({}, "", "{% url app.views.loading %}");
     </script>
 
   </body>
