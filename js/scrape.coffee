@@ -185,6 +185,21 @@ class FoxNews extends Scraper
         'Trending in Politics': $('.trending-descending li a')
 
 
+class Gawker extends Scraper
+    constructor: ->
+        @name = 'Gawker'
+        @domain = 'http://gawker.com/'
+        @url = '/'
+
+    get_anchors: ->
+        anchors = {}
+        # for [category, name] in [['popular', 'Most Popular'], ['commented', 'Most Commented']]
+        #     # $("li#switch_#{category} a").click()
+        #     anchors[name] = $('a.headline')
+        # anchors
+        'Default': $('a.headline')
+
+
 class HuffingtonPost extends Scraper
     constructor: ->
         @name = 'Huffington Post'
@@ -435,6 +450,7 @@ SCRAPER_CLASSES = [
     DailyBeast,
     DailyCaller,
     FoxNews,
+    Gawker,
     HuffingtonPost,
     TheNation,
     NewYorkTimes,
