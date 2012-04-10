@@ -1,5 +1,6 @@
 import os
 import json
+import re
 from datetime import datetime
 from datetime import timedelta
 from itertools import izip_longest
@@ -32,7 +33,11 @@ def store_and_filter(data):
     for site in data:
         for category in data[site]:
             fresh = []
-            for article in data[site][category]:
+            for i, article in enumerate(data[site][category]):
+                article['text'] = clean(article['text'])
+                if not article['text']:
+                    data[site][category].pop(i)
+                    continue
                 _article, created = (
                     Article.objects
                     .get_or_create(site=site, title=article['text']))
@@ -43,6 +48,16 @@ def store_and_filter(data):
                 article['age'] = (now - _article.pub_date).total_seconds()
 
     return data
+
+
+TITLE_REGEXP = re.compile('(^[0-9][.:][ \n\t]?)?[ \n\t]*([^\n\t]*)')
+
+def clean(text):
+    match = TITLE_REGEXP.match(text)
+    if match:
+        return match.groups()[1]
+    else:
+        return text
 
 
 def scraper(request):
