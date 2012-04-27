@@ -446,11 +446,11 @@ SCRAPER_CLASSES = [
     BuzzFeed,
 #    CNN, # Popular on Facebook requires facebook access
     CBS,
-    CrooksAndLiars,
+#    CrooksAndLiars, # wasn't using
     DailyBeast,
     DailyCaller,
     FoxNews,
-    Gawker,
+#    Gawker, # was latest not most popular
     HuffingtonPost,
     TheNation,
     NewYorkTimes,
@@ -465,7 +465,7 @@ SCRAPER_CLASSES = [
     WashingtonExaminer,
     WashingtonPost,
     WashingtonPostOpinions,
-    Wonkette,
+#    Wonkette, #inappropriate!
     WSJ,
     WSJWashwire,
     TheWeek,
