@@ -136,6 +136,15 @@ class CNN extends Scraper
         "Popular on Facebook (doesn't work due to facebook auth)": $('#pmFacebook li a')
 
 
+class CNNNewsPulse extends Scraper
+    constructor: ->
+        @name = 'CNN NewsPulse'
+        @domain = 'http://newspulse.cnn.com/'
+
+    get_anchors: ->
+        'News': $('a.nsFullStoryLink')[0...5]
+
+
 class CrooksAndLiars extends Scraper
     constructor: ->
         @name = 'Crooks and Liars'
@@ -470,6 +479,7 @@ SCRAPER_CLASSES = [
     BusinessInsider,
     BuzzFeed,
 #    CNN, # Popular on Facebook requires facebook access
+    CNNNewsPulse,
     CBS,
 #    CrooksAndLiars, # wasn't using
     DailyBeast,
