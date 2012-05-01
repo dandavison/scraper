@@ -214,6 +214,15 @@ class HuffingtonPost extends Scraper
         'Most Popular': $('.snp_most_popular_entry_desc a').not(-> @.href.indexOf('javascript') is 0)
 
 
+class LATimes extends Scraper
+    constructor: ->
+        @name = 'LA Times'
+        @domain = 'http://www.latimes.com'
+
+    get_anchors: ->
+        'Most Viewed': $(".mviewed a[href*='mostviewed']")
+        'Most Emailed': $("a[href*='MostEmailed']")
+
 class TheNation extends Scraper
     constructor: ->
         @name = 'The Nation'
@@ -466,6 +475,7 @@ SCRAPER_CLASSES = [
     FoxNews,
 #    Gawker, # was latest not most popular
     HuffingtonPost,
+    LATimes
     TheNation,
     NYDailyNews
     NewYorkTimes,
