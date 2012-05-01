@@ -239,10 +239,13 @@ class TheNation extends Scraper
 class NYDailyNews extends Scraper
     constructor: ->
         @name = 'NY Daily News'
-        @domain = 'http://www.nydailynews.com/'
+        @domain = 'http://www.nydailynews.com'
 
     get_anchors: ->
-        'Most Read': $('#most-read-content a.gallery')
+        # These work in the browser, but not in jsdom?
+        # 'Most Read': $('#most-read-content div[style*="display: block"] a.gallery')
+        # 'Most Shared': $('#most-read-content div[style*="display: none"] a.gallery')
+        'Most Read + Most Shared': $('#most-read-content a.gallery')
 
 
 class NewYorkTimes extends Scraper
