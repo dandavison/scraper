@@ -223,6 +223,16 @@ class TheNation extends Scraper
         anchors
 
 
+class NYDailyNews extends Scraper
+    constructor: ->
+        @name = 'NY Daily News'
+        @domain = 'http://www.nydailynews.com/'
+        @url = '/'
+
+    get_anchors: ->
+        'Most Read': $('#most-read-content a.gallery')
+
+
 class NewYorkTimes extends Scraper
     constructor: ->
         @name = 'New York Times'
@@ -453,6 +463,7 @@ SCRAPER_CLASSES = [
 #    Gawker, # was latest not most popular
     HuffingtonPost,
     TheNation,
+    NYDailyNews
     NewYorkTimes,
 #    NewYorkTimesFrontPage, # Defeated by ajax tabs?
     NPR,
