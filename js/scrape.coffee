@@ -499,7 +499,7 @@ SCRAPER_CLASSES = [
     RealClearPolitics,
     RollingStone,
     Slate,
-    ThinkProgress,
+#    ThinkProgress,
     USAToday
     WashingtonExaminer,
     WashingtonPost,
