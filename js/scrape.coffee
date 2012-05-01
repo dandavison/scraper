@@ -5,7 +5,7 @@ util = require 'util'
 
 class Scraper
     scrape: =>
-        request uri: @domain + @url, (error, response, body) =>
+        request uri: @domain + (@url or '/'), (error, response, body) =>
             data[@name] ?= {}
             if error
                 msg = if response then "status code #{response.statusCode}" else "no response"
@@ -46,7 +46,6 @@ class AtlanticWire extends Scraper
     constructor: ->
         @name = 'Atlantic Wire'
         @domain = 'http://www.theatlanticwire.com'
-        @url = '/'
 
     get_anchors: -> 'Most clicked': $('.most-clicked li a')
 
@@ -88,7 +87,6 @@ class TheBlaze extends Scraper
     constructor: ->
         @name = 'The Blaze'
         @domain = 'http://www.theblaze.com'
-        @url = '/'
 
     get_anchors: -> 'Popular Stories': $('h3:contains(Popular Stories)').parent().find('li a.title')
 
@@ -133,7 +131,6 @@ class CNN extends Scraper
     constructor: ->
         @name = 'CNN'
         @domain = 'http://www.cnn.com'
-        @url = '/'
 
     get_anchors: ->
         "Popular on Facebook (doesn't work due to facebook auth)": $('#pmFacebook li a')
@@ -143,7 +140,6 @@ class CrooksAndLiars extends Scraper
     constructor: ->
         @name = 'Crooks and Liars'
         @domain = 'http://crooksandliars.com'
-        @url = '/'
 
     get_anchors: ->
         anchors = {}
@@ -189,7 +185,6 @@ class Gawker extends Scraper
     constructor: ->
         @name = 'Gawker'
         @domain = 'http://gawker.com/'
-        @url = '/'
 
     get_anchors: ->
         anchors = {}
@@ -204,7 +199,6 @@ class HuffingtonPost extends Scraper
     constructor: ->
         @name = 'Huffington Post'
         @domain = 'http://www.huffingtonpost.com'
-        @url = '/'
 
     get_anchors: ->
         'Most Popular': $('.snp_most_popular_entry_desc a').not(-> @.href.indexOf('javascript') is 0)
@@ -227,7 +221,6 @@ class NYDailyNews extends Scraper
     constructor: ->
         @name = 'NY Daily News'
         @domain = 'http://www.nydailynews.com/'
-        @url = '/'
 
     get_anchors: ->
         'Most Read': $('#most-read-content a.gallery')
@@ -250,7 +243,6 @@ class NewYorkTimesFrontPage extends Scraper
     constructor: ->
         @name = 'New York Times'
         @domain = 'http://www.nytimes.com'
-        @url = '/'
 
     get_anchors: ->
         # I think this one fails due to fancy ajax tabs.
@@ -261,7 +253,6 @@ class NPR extends Scraper
     constructor: ->
         @name = 'NPR'
         @domain = 'http://www.npr.org'
-        @url = '/'
 
     get_anchors: ->
         anchors = {}
@@ -274,7 +265,6 @@ class PoliticalWire extends Scraper
     constructor: ->
         @name = 'Political Wire'
         @domain = 'http://politicalwire.com'
-        @url = '/'
 
     get_anchors: ->
         # Not working; links populated by js on page load
@@ -285,7 +275,6 @@ class Politico extends Scraper
     constructor: ->
         @name = 'Politico'
         @domain = 'http://www.politico.com'
-        @url = '/'
 
     get_anchors: ->
         anchors = {}
@@ -298,7 +287,6 @@ class RealClearPolitics extends Scraper
     constructor: ->
         @name = 'Real Clear Politics'
         @domain = 'http://realclearpolitics.com'
-        @url = '/'
 
     get_anchors: ->
         'Most Read': $('#most-read-box a.most-read')
@@ -318,7 +306,6 @@ class Slate extends Scraper
     constructor: ->
         @name = 'Slate'
         @domain = 'http://www.slate.com'
-        @url = '/'
 
     get_anchors: ->
         'Most Read & Most Shared (need to disect them)': $('.most_read_and_commented li a').filter (a) -> a.href isnt 'javascript:void(0)'
@@ -328,7 +315,6 @@ class ThinkProgress extends Scraper
     constructor: ->
         @name = 'ThinkProgress'
         @domain = 'http://thinkprogress.org'
-        @url = '/'
 
     get_anchors: ->
         'Facebook & Twitter (need to disect them)': $('.popular li a')
@@ -338,7 +324,6 @@ class WashingtonExaminer extends Scraper
     constructor: ->
         @name = 'Washington Examiner'
         @domain = 'http://washingtonexaminer.com'
-        @url = '/'
 
     get_anchors: ->
         'Most Popular': $(".view-popular div ul li a")
@@ -374,7 +359,6 @@ class Wonkette extends Scraper
     constructor: ->
         @name = 'Wonkette'
         @domain = 'http://wonkette.com'
-        @url = '/'
 
     get_anchors: ->
         anchors = {}
@@ -427,7 +411,6 @@ class TheWeek extends Scraper
     constructor: ->
         @name = 'The Week'
         @domain = 'http://theweek.com'
-        @url = '/'
 
     get_anchors: ->
         anchors = {}
