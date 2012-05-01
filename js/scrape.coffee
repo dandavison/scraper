@@ -330,6 +330,16 @@ class ThinkProgress extends Scraper
         'Facebook & Twitter (need to disect them)': $('.popular li a')
 
 
+class USAToday extends Scraper
+    constructor: ->
+        @name = 'USA Today'
+        @domain = 'http://www.usatoday.com'
+        @url = '/news'
+
+    get_anchors: ->
+        'Most Popular': $('h3:contains("Most Popular in News")').parent().find('a')
+
+
 class WashingtonExaminer extends Scraper
     constructor: ->
         @name = 'Washington Examiner'
@@ -467,6 +477,7 @@ SCRAPER_CLASSES = [
     RollingStone,
     Slate,
     ThinkProgress,
+    USAToday
     WashingtonExaminer,
     WashingtonPost,
     WashingtonPostOpinions,
