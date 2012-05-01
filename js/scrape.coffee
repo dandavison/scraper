@@ -148,6 +148,16 @@ class CrooksAndLiars extends Scraper
         anchors
 
 
+class DailyMail extends Scraper
+    constructor: ->
+        @name = 'Daily Mail'
+        @domain = 'http://www.dailymail.co.uk'
+        @url = '/ushome'
+
+    get_anchors: ->
+        'Most Read': $('.news.tabbed-headlines .dm-tab-pane-hidden a')[0...10]
+
+
 class DailyBeast extends Scraper
     constructor: ->
         @name = 'Daily Beast'
@@ -442,6 +452,7 @@ SCRAPER_CLASSES = [
 #    CrooksAndLiars, # wasn't using
     DailyBeast,
     DailyCaller,
+      DailyMail
     FoxNews,
 #    Gawker, # was latest not most popular
     HuffingtonPost,
