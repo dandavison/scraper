@@ -323,6 +323,16 @@ class RealClearPolitics extends Scraper
         'Most Read': $('#most-read-box a.most-read')
 
 
+class Reddit extends Scraper
+    constructor: ->
+        @name = 'Reddit'
+        @domain = 'http://www.reddit.com'
+        @url = '/r/politics'
+
+    get_anchors: ->
+        'Hot': $("#siteTable a.title")
+
+
 class RollingStone extends Scraper
     constructor: ->
         @name = 'Rolling Stone'
@@ -497,6 +507,7 @@ SCRAPER_CLASSES = [
 #    PoliticalWire, # Not working, js-populated links
     Politico,
     RealClearPolitics,
+    Reddit,
     RollingStone,
     Slate,
 #    ThinkProgress,
