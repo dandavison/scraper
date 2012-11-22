@@ -35,8 +35,15 @@
           callback();
           return;
         }
-        global.$ = cheerio.load(body);
-        return callback();
+        try {
+          global.$ = cheerio.load(body);
+          return _this._scrape();
+        } catch (err) {
+          console.log(err);
+          return data[_this.name]['Error'] = _this.make_fake_entry(err);
+        } finally {
+          callback();
+        }
       });
     };
 
@@ -48,10 +55,12 @@
       var $anchors, a, category, url_getter, _ref, _results,
         _this = this;
       url_getter = function(a) {
-        if (a.href[0] === '/') {
-          return _this.domain + a.href;
+        var href;
+        href = a.attribs.href;
+        if (href[0] === '/') {
+          return _this.domain + href;
         } else {
-          return a.href;
+          return href;
         }
       };
       _ref = this.get_anchors();
@@ -139,7 +148,7 @@
 
     BBCUSandCanada.prototype.get_anchors = function() {
       return {
-        'Most popular': $('#most-popular-category div li a').slice(0, 2)
+        'Most popular': $('#most-popular-category div li a').first()
       };
     };
 
@@ -242,10 +251,10 @@
     BuzzFeed.prototype.get_anchors = function() {
       var validate;
       validate = function() {
-        return (this.href.indexOf('/usr/homebrew/lib/node/jsdom') === -1) && (this.href.indexOf('twitter') === -1);
+        return (this.attr('href').indexOf('/usr/homebrew/lib/node/jsdom') === -1) && (this.attr('href').indexOf('twitter') === -1) && this.find('h2').length > 0;
       };
       return {
-        'Most viral in Politics': $('.bf-widget div a:has(h2)').filter(validate)
+        'Most viral in Politics': $('.bf-widget div a').filter(validate)
       };
     };
 
@@ -303,7 +312,9 @@
 
     CNNNewsPulse.prototype.get_anchors = function() {
       return {
-        'News': $('a.nsFullStoryLink').slice(0, 5)
+        'News': $('a.nsFullStoryLink').filter(function(i) {
+          return i < 5;
+        })
       };
     };
 
@@ -347,7 +358,9 @@
 
     DailyMail.prototype.get_anchors = function() {
       return {
-        'Most Read': $('.news.tabbed-headlines .dm-tab-pane-hidden a').slice(0, 10)
+        'Most Read': $('.news.tabbed-headlines .dm-tab-pane-hidden a').filter(function(i) {
+          return i < 10;
+        })
       };
     };
 
@@ -452,8 +465,8 @@
 
     HuffingtonPost.prototype.get_anchors = function() {
       return {
-        'Most Popular': $('.snp_most_popular_entry_desc a').not(function() {
-          return this.href.indexOf('javascript') === 0;
+        'Most Popular': $('.snp_most_popular_entry_desc a').filter(function() {
+          return this.attr('href').indexOf('javascript') !== 0;
         })
       };
     };
@@ -687,9 +700,7 @@
     }
 
     RollingStone.prototype.get_anchors = function() {
-      return {
-        'Most Popular': $('h2:contains("Most Popular")').parent().find('div ul.politics li a:not(:has(img))')
-      };
+      return {};
     };
 
     return RollingStone;
@@ -707,8 +718,8 @@
 
     Slate.prototype.get_anchors = function() {
       return {
-        'Most Read & Most Shared (need to disect them)': $('.most_read_and_commented li a').filter(function(a) {
-          return a.href !== 'javascript:void(0)';
+        'Most Read & Most Shared (need to disect them)': $('.most_read_and_commented li a').filter(function() {
+          return this.attr('href') !== 'javascript:void(0)';
         })
       };
     };
@@ -747,9 +758,7 @@
     }
 
     USAToday.prototype.get_anchors = function() {
-      return {
-        'Most Popular': $('h3:contains("Most Popular in News")').parent().find('a')
-      };
+      return {};
     };
 
     return USAToday;
@@ -906,7 +915,7 @@
       var text_getter;
       text_getter = function(a) {
         var text;
-        text = a.href;
+        text = a.attribs.href;
         if (text[text.length - 1] === '/') {
           text = text.slice(0, text.length - 1);
         }
