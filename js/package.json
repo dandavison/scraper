@@ -5,7 +5,7 @@
     "author": "Dan Davison <dandavison7@gmail.com>",
     "dependencies": {
 	    "coffee-script": "1.2.x",
-	    "cheerio": "0.10.3",
+	    "cheerio": "0.10.x",
 	    "request": "1.9.x"
     },
     "engines": { "node": ">= 0.4.4" }
