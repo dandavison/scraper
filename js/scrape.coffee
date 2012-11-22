@@ -107,8 +107,10 @@ class BuzzFeed extends Scraper
     get_anchors: ->
         validate = ->
             (@.attr('href').indexOf('/usr/homebrew/lib/node/jsdom') == -1) and \
-            (@.attr('href').href.indexOf('twitter') == -1)
-        'Most viral in Politics': $('.bf-widget div a:has(h2)').filter(validate)
+            (@.attr('href').indexOf('twitter') == -1) and \
+             @.find('h2').length > 0
+
+        'Most viral in Politics': $('.bf-widget div a').filter(validate)
 
 
 class CBS extends Scraper
