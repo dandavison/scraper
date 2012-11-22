@@ -36,6 +36,7 @@
           return;
         }
         try {
+          global.body = body;
           global.$ = cheerio.load(body);
           return _this._scrape();
         } catch (err) {
@@ -640,12 +641,14 @@
     }
 
     Politico.prototype.get_anchors = function() {
-      var anchors, category, name, _i, _len, _ref, _ref1;
+      var $$, anchors, category, name, subtree, _i, _len, _ref, _ref1;
+      subtree = body.slice(body.search('<div id="widgetPopularStories" class="widget widget-exclusive">'), body.search('</div><!--/widgetPopularStories-->'));
+      $$ = cheerio.load(subtree);
       anchors = {};
       _ref = [['MostRead', 'Most Read'], ['MostEmailed', 'Most Emailed'], ['MostCommented', 'Most Commented']];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         _ref1 = _ref[_i], category = _ref1[0], name = _ref1[1];
-        anchors[name] = $("#popular" + category + " ol li a");
+        anchors[name] = $$("#popular" + category + " ol li a");
       }
       return anchors;
     };

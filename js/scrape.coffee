@@ -13,6 +13,7 @@ class Scraper
                 callback()
                 return
             try
+                global.body = body  # Make the raw data available in case parsing fails
                 global.$ = cheerio.load body
                 @_scrape()
             catch err
@@ -307,10 +308,15 @@ class Politico extends Scraper
         @domain = 'http://www.politico.com'
 
     get_anchors: ->
+        # cheerio can't parse politico. It loses the plot at a fragment of js starting at line 1554.
+        subtree = body.slice(body.search('<div id="widgetPopularStories" class="widget widget-exclusive">'),
+                             body.search('</div><!--/widgetPopularStories-->'))
+        $$ = cheerio.load(subtree)
+
         anchors = {}
         for [category, name] in [['MostRead', 'Most Read'], ['MostEmailed', 'Most Emailed'], ['MostCommented', 'Most Commented']]
             # FIXME: Why is $('#popularMostRead') etc empty with cheerio? (see also TheNation problem)
-            anchors[name] = $("#popular#{category} ol li a")
+            anchors[name] = $$("#popular#{category} ol li a")
         anchors
 
 
