@@ -488,7 +488,7 @@ SCRAPER_CLASSES = [
 #    CrooksAndLiars, # wasn't using
     DailyBeast,
     DailyCaller,
-      DailyMail
+    DailyMail,
     FoxNews,
 #    Gawker, # was latest not most popular
     HuffingtonPost,
