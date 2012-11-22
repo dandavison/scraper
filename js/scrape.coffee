@@ -137,6 +137,8 @@ class CNNNewsPulse extends Scraper
         @name = 'CNN NewsPulse'
         @domain = 'http://newspulse.cnn.com/'
 
+    get_anchor_text: (a) -> a.attribs.href
+
     get_anchors: ->
         'News': $('a.nsFullStoryLink').filter (i) -> i < 5
 

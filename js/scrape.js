@@ -310,6 +310,10 @@
       this.domain = 'http://newspulse.cnn.com/';
     }
 
+    CNNNewsPulse.prototype.get_anchor_text = function(a) {
+      return a.attribs.href;
+    };
+
     CNNNewsPulse.prototype.get_anchors = function() {
       return {
         'News': $('a.nsFullStoryLink').filter(function(i) {
