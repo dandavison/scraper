@@ -25,7 +25,8 @@ class Scraper
 
     _scrape: =>
         url_getter = (a) =>
-            if a.href[0] is '/' then @domain + a.href else a.href
+            href = a.attribs.href
+            if href[0] is '/' then @domain + href else href
         for category, $anchors of @get_anchors()
             data[@name][category] = for a in $anchors.toArray()
                 {text: @get_anchor_text(a).trim(),
@@ -58,7 +59,7 @@ class BBCUSandCanada extends Scraper
         @domain = 'http://www.bbc.co.uk'
         @url = '/news/world/us_and_canada/'
 
-    get_anchors: -> 'Most popular': $('#most-popular-category div li a')[0..1]
+    get_anchors: -> 'Most popular': $('#most-popular-category div li a').first()
 
 
 class BBCUSandCanadaArticle extends Scraper
@@ -105,8 +106,8 @@ class BuzzFeed extends Scraper
 
     get_anchors: ->
         validate = ->
-            (@.href.indexOf('/usr/homebrew/lib/node/jsdom') == -1) and \
-            (@.href.indexOf('twitter') == -1)
+            (@.attr('href').indexOf('/usr/homebrew/lib/node/jsdom') == -1) and \
+            (@.attr('href').href.indexOf('twitter') == -1)
         'Most viral in Politics': $('.bf-widget div a:has(h2)').filter(validate)
 
 
@@ -135,7 +136,7 @@ class CNNNewsPulse extends Scraper
         @domain = 'http://newspulse.cnn.com/'
 
     get_anchors: ->
-        'News': $('a.nsFullStoryLink')[0...5]
+        'News': $('a.nsFullStoryLink').filter (i) -> i < 5
 
 
 class CrooksAndLiars extends Scraper
@@ -157,7 +158,7 @@ class DailyMail extends Scraper
         @url = '/ushome'
 
     get_anchors: ->
-        'Most Read': $('.news.tabbed-headlines .dm-tab-pane-hidden a')[0...10]
+        'Most Read': $('.news.tabbed-headlines .dm-tab-pane-hidden a').filter (i) -> i < 10
 
 
 class DailyBeast extends Scraper
@@ -213,7 +214,7 @@ class HuffingtonPost extends Scraper
         @domain = 'http://www.huffingtonpost.com'
 
     get_anchors: ->
-        'Most Popular': $('.snp_most_popular_entry_desc a').not(-> @.href.indexOf('javascript') is 0)
+        'Most Popular': $('.snp_most_popular_entry_desc a').filter -> @.attr('href').indexOf('javascript') isnt 0
 
 
 class LATimes extends Scraper
@@ -342,7 +343,7 @@ class Slate extends Scraper
         @domain = 'http://www.slate.com'
 
     get_anchors: ->
-        'Most Read & Most Shared (need to disect them)': $('.most_read_and_commented li a').filter (a) -> a.href isnt 'javascript:void(0)'
+        'Most Read & Most Shared (need to disect them)': $('.most_read_and_commented li a').filter -> @.attr('href') isnt 'javascript:void(0)'
 
 
 class ThinkProgress extends Scraper
@@ -432,7 +433,7 @@ class WSJWashwire extends Scraper
 
     get_anchor_text: (a) ->
         text_getter = (a) ->
-            text = a.href
+            text = a.attribs.href
             if text[text.length - 1] == '/'
                 text = text.slice(0, text.length - 1)
             text.split('/').pop()
