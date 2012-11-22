@@ -237,6 +237,7 @@ class TheNation extends Scraper
     get_anchors: ->
         anchors = {}
         for [category, name] in [['most-read', 'Most Read'], ['most-commented', 'Most Commented']]
+            # FIXME: Why is $('#most-read') etc empty with cheerio? (see also Politico problem)
             anchors[name] = $("##{category} ul div li a")
         anchors
 
@@ -306,6 +307,7 @@ class Politico extends Scraper
     get_anchors: ->
         anchors = {}
         for [category, name] in [['MostRead', 'Most Read'], ['MostEmailed', 'Most Emailed'], ['MostCommented', 'Most Commented']]
+            # FIXME: Why is $('#popularMostRead') etc empty with cheerio? (see also TheNation problem)
             anchors[name] = $("#popular#{category} ol li a")
         anchors
 
@@ -336,7 +338,9 @@ class RollingStone extends Scraper
         @url = '/politics'
 
     get_anchors: ->
-        'Most Popular': $('h2:contains("Most Popular")').parent().find('div ul.politics li a:not(:has(img))')
+        {}
+        # TODO: the page structure seems to have changed
+        # 'Most Popular': $('h2:contains("Most Popular")').parent().find('div ul.politics li a:not(:has(img))')
 
 
 class Slate extends Scraper
@@ -364,7 +368,9 @@ class USAToday extends Scraper
         @url = '/news'
 
     get_anchors: ->
-        'Most Popular': $('h3:contains("Most Popular in News")').parent().find('a')
+        {}
+        # TODO: the page structure seems to have changed
+        # 'Most Popular': $('h3:contains("Most Popular in News")').parent().find('a')
 
 
 class WashingtonExaminer extends Scraper
