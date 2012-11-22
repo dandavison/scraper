@@ -1,5 +1,5 @@
 request = require 'request'
-jsdom = require 'jsdom'
+cheerio = require 'cheerio'
 util = require 'util'
 
 
@@ -12,21 +12,14 @@ class Scraper
                 data[@name]['Error'] = @make_fake_entry "#{@domain + @url} returned #{msg}"
                 callback()
                 return
-            jsdom.env
-                html: body
-                scripts: ["http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"],
-                (error, window) =>
-                    if error
-                        data[@name]['Error'] = @make_fake_entry 'Error loading jquery'
-                        callback()
-                    else
-                        global.$ = window.jQuery
-                        try
-                            @_scrape()
-                        catch err
-                            data[@name]['Error'] = @make_fake_entry err
-                        finally
-                            callback()
+            try
+                global.$ = cheerio.load body
+                @_scrape()
+            catch err
+                console.log err
+                data[@name]['Error'] = @make_fake_entry err
+            finally
+                callback()
 
     get_anchor_text: (a) -> $(a).text()
 
