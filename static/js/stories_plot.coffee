@@ -23,7 +23,7 @@ class BasePlot
         @_height = value
         @
 
-configure_viewport = (elem, x_domain, y_domain) ->
+configure_viewport = (elem, x_domain, y_domain, xtime=false) ->
     # Viewport configuration boilerplate
     # Returns:
     #     plot: the plot element (a d3 selection)
@@ -51,9 +51,14 @@ configure_viewport = (elem, x_domain, y_domain) ->
         .attr('height', plot_dims.height)
 
     # Create x- and y- scales
-    xscale = d3.scale.linear()
-        .domain(x_domain)
-        .range([0, plot_dims.width])
+    if xtime
+        xscale = d3.time.scale()
+            .domain(x_domain)
+            .range([0, plot_dims.width])
+    else
+        xscale = d3.scale.linear()
+            .domain(x_domain)
+            .range([0, plot_dims.width])
     yscale = d3.scale.linear()
         .domain(y_domain)
         .range([plot_dims.height, 0])
@@ -83,15 +88,13 @@ class window.Plot extends BasePlot
     _draw: (elem, data) ->
 
         # Compute x- and y-domains
-        author_counts = d3.nest()
-            .key((story) -> story.author)
-            .rollup((group) -> group.length)
-            .map(data)
-        x_domain = d3.extent(d3.values(author_counts))
+        for d in data
+            data.timestamp = new Date(data.timestamp)
+        x_domain = d3.extent(data, (d) -> d.timestamp)
         y_domain = d3.extent(data, (d) -> d.comments)
 
         # Off-the-shelf viewport
-        {plot, x, y} = configure_viewport(elem, x_domain, y_domain)
+        {plot, x, y} = configure_viewport(elem, x_domain, y_domain, true)
 
         # Add data points
         points = plot.selectAll('circle').data(data)
