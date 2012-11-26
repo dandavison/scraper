@@ -23,6 +23,29 @@ class BasePlot
         @_height = value
         @
 
+class window.Plot extends BasePlot
+
+    _draw: (elem, data) ->
+
+        debugger
+
+        # Compute x- and y-domains
+        for d in data
+            data.timestamp = new Date(data.timestamp)
+        x_domain = d3.extent(data, (d) -> d.timestamp)
+        y_domain = d3.extent(data, (d) -> d.comments)
+
+        # Off-the-shelf viewport
+        {plot, x, y} = configure_viewport(elem, x_domain, y_domain, true)
+
+        # Add data points
+        points = plot.selectAll('circle').data(data)
+
+        points.enter()
+            .attr('cx', (d) -> x(d.x))
+            .attr('cy', (d) -> y(d.y))
+
+
 configure_viewport = (elem, x_domain, y_domain, xtime=false) ->
     # Viewport configuration boilerplate
     # Returns:
@@ -81,24 +104,3 @@ configure_viewport = (elem, x_domain, y_domain, xtime=false) ->
         .call(yaxis)
 
     {plot, x, y}
-
-
-class window.Plot extends BasePlot
-
-    _draw: (elem, data) ->
-
-        # Compute x- and y-domains
-        for d in data
-            data.timestamp = new Date(data.timestamp)
-        x_domain = d3.extent(data, (d) -> d.timestamp)
-        y_domain = d3.extent(data, (d) -> d.comments)
-
-        # Off-the-shelf viewport
-        {plot, x, y} = configure_viewport(elem, x_domain, y_domain, true)
-
-        # Add data points
-        points = plot.selectAll('circle').data(data)
-
-        points.enter()
-            .attr('cx', (d) -> x(d.x))
-            .attr('cy', (d) -> y(d.y))
