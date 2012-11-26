@@ -87,10 +87,7 @@ def get_scrape_data():
     scrape = os.path.join(settings.SITE_DIRECTORY,
                           'js/scrape.js')
 
-    node = os.path.join(settings.SITE_DIRECTORY,
-                        'bin/node')
-
-    scraper = Popen([node, scrape], stdin=PIPE, stdout=PIPE)
+    scraper = Popen(["node", scrape], stdin=PIPE, stdout=PIPE)
     scraper.stdin.close()
 
     data = scraper.stdout.read()
