@@ -21,13 +21,11 @@ class Politix
             for article in articles
                 $article = $(article)
                 title = $article.find('div.bd a h3').text()
-                [day, comments] = $article.find('div.bd p span')
-                day = $(day).siblings().text()
-                comments = $(comments).text()
+                [timestamp, comments] = (span.next.data for span in $article.find('div.bd p.margint5 span'))
                 data.push(
                     'author': author
-                    'day': day
                     'title': title
+                    'timestamp': timestamp
                     'comments': comments
                 )
             @done++
