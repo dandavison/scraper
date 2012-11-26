@@ -12,7 +12,6 @@ class Politix
     get_data: ->
         for author in ['politixmayday', 'politixdain', 'politixmary', 'politixdavid']
             url = "#{ @domain }/profile/#{ author }"
-            data[author] = []
             @scrape(author, url)
 
     scrape: (author, url) ->
@@ -25,16 +24,18 @@ class Politix
                 [day, comments] = $article.find('div.bd p span')
                 day = $(day).siblings().text()
                 comments = $(comments).text()
-                data[author].push(
+                data.push(
+                    'author': author
                     'day': day
                     'title': title
                     'comments': comments
                 )
             @done++
-            if @done = 4
+            if @done == 4
                 util.puts(JSON.stringify(data, null, 2))
+                process.exit(0)
 
         request(uri: url, callback)
 
-data = {}
+data = []
 (new Politix).get_data()
