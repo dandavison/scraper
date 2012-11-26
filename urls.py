@@ -6,6 +6,6 @@ urlpatterns = patterns(
     url(r'^scrapey$', '_scraper.views.scrapey'),
     url(r'^scraper$', '_scraper.views.scraper'),
                        
-    url(r'^politix/stories$', 'politix.views.stories'),
-    url(r'^politix/stories/data$', 'politix.views.stories_data'),
+    url(r'^politix/stories/$', 'politix.views.stories'),
+    url(r'^politix/stories/data/$', 'politix.views.stories_data'),
 )
