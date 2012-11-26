@@ -122,10 +122,12 @@ class window.Plot extends BasePlot
             .attr('r', 5)
             .attr('fill', (d) -> color(d.author))
 
-        plot.selectAll('circle').on('mouseover', (d) =>
-            debugger
-            @show_tooltip("#{d.title}<br>#{d.author}")
-        )
+        plot.selectAll('circle')
+            .on('mouseover', (d) =>
+                @show_tooltip("#{d.title}<br>#{d.author}"))
+            .on('mouseout', (d) =>
+                @hide_tooltip())
+
 
     show_tooltip: (html) =>
         m = d3.mouse(d3.select("body").node())
