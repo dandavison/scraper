@@ -83,6 +83,16 @@ class BasePlot
 
 class window.Plot extends BasePlot
 
+    constructor: ->
+        super()
+
+        @tooltip = d3.select("body").append("div")
+            .style("display", "none")
+            .style("background-color", "#eee")
+            .style("background-color", "rgba(242, 242, 242, .6)")
+            .style("padding", "5px")
+            .style("position", "absolute")
+
     _draw: (elem, data) ->
 
         # Compute x- and y-domains
@@ -90,6 +100,14 @@ class window.Plot extends BasePlot
             data.timestamp = new Date(data.timestamp)
         x_domain = d3.extent(data, (d) -> d.timestamp)
         y_domain = d3.extent(data, (d) -> d.comments)
+
+        author_counts = d3.nest()
+            .key((story) -> story.author)
+            .rollup((group) -> group.length)
+            .map(data)
+
+        color = d3.scale.category10()
+            .domain(d3.keys(author_counts))
 
         # Off-the-shelf viewport
         {plot, x, y} = @configure_viewport(elem, x_domain, y_domain, true)
@@ -102,3 +120,19 @@ class window.Plot extends BasePlot
             .attr('cx', (d) -> x(d.timestamp))
             .attr('cy', (d) -> y(d.comments))
             .attr('r', 5)
+            .attr('fill', (d) -> color(d.author))
+
+        plot.selectAll('circle').on('mouseover', (d) =>
+            debugger
+            @show_tooltip("#{d.title}<br>#{d.author}")
+        )
+
+    show_tooltip: (html) =>
+        m = d3.mouse(d3.select("body").node())
+        @tooltip.style("display", null)
+            .style("left", m[0] + 30 + "px")
+            .style("top", m[1] - 20 + "px")
+            .html(html)
+
+    hide_tooltip: =>
+        @tooltip.style("display", "none")
