@@ -107,7 +107,7 @@ class window.Plot extends BasePlot
             .map(data)
 
         color = d3.scale.category10()
-            .domain(d3.keys(author_counts))
+            .domain(d3.keys(author_counts).sort())
 
         # Off-the-shelf viewport
         {plot, x, y} = @configure_viewport(elem, x_domain, y_domain, true)

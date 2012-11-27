@@ -114,7 +114,7 @@
       }).rollup(function(group) {
         return group.length;
       }).map(data);
-      color = d3.scale.category10().domain(d3.keys(author_counts));
+      color = d3.scale.category10().domain(d3.keys(author_counts).sort());
       _ref = this.configure_viewport(elem, x_domain, y_domain, true), plot = _ref.plot, x = _ref.x, y = _ref.y;
       points = plot.selectAll('circle').data(data);
       points.enter().append('circle').attr('cx', function(d) {
