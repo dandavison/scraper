@@ -88,10 +88,14 @@ def _clean_timestamp(timestamp):
             try:
                 # E.g. "14 hr "
                 quantity, unit = timestamp.split()
-                if unit != "hr":
+                if unit == "hr":
+                    time = now - timedelta(hours=int(quantity))
+                    timestamp_type = 'hours'
+                elif unit == "min":
+                    time = now - timedelta(minutes=int(quantity))
+                    timestamp_type = 'minutes'
+                else:
                     raise ValueError("Can't parse timestamp: '%s'" % timestamp)
-                time = now - timedelta(hours=int(quantity))
-                timestamp_type = 'hours'
             except:
                 raise
 
