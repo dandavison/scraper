@@ -8,6 +8,7 @@ from subprocess import Popen, PIPE
 
 from django.db import settings
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 
 from models import Article
 
@@ -15,12 +16,14 @@ from models import Article
 SHELF_LIFE = timedelta(days=5)
 
 
+@login_required
 def loading(request):
     return render_to_response(
         'loading.html',
         {})
 
 
+@login_required
 def scrapey(request):
     return render_to_response(
         'loading.html',
@@ -60,6 +63,7 @@ def clean(text):
         return text
 
 
+@login_required
 def scraper(request):
     def reshape(data):
         return {

@@ -1,6 +1,7 @@
 # Code added by Dan
 import os
 SITE_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
+LOGIN_URL = '/login/'
 
 # Code added by Django, modified by Dan
 
