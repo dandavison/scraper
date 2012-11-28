@@ -28,8 +28,10 @@ def stories_data(request):
     "JSON story data"
     scraper = os.path.join(settings.SITE_DIRECTORY,
                            'politix/scraper/get_comments.js')
+    node = os.path.join(settings.SITE_DIRECTORY,
+                        'bin/node')
 
-    scraper = Popen(["node", scraper], stdin=PIPE, stdout=PIPE)
+    scraper = Popen([node, scraper], stdin=PIPE, stdout=PIPE)
     scraper.stdin.close()
     data = json.loads(scraper.stdout.read())
     data = clean(data)
