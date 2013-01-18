@@ -48,7 +48,7 @@
       }
       container = d3.select(elem);
       margins = {
-        top: 20,
+        top: 10,
         right: 20,
         bottom: 30,
         left: 60
@@ -97,7 +97,7 @@
     }
 
     Plot.prototype._draw = function(elem, data) {
-      var author_counts, color, d, plot, points, x, x_domain, y, y_domain, _i, _len, _ref,
+      var author_counts, color, d, line, plot, points, x, x_domain, y, y_domain, _i, _len, _ref,
         _this = this;
       for (_i = 0, _len = data.length; _i < _len; _i++) {
         d = data[_i];
@@ -124,6 +124,12 @@
       }).attr('r', 5).attr('fill', function(d) {
         return color(d.author);
       });
+      line = d3.svg.line().x(function(d) {
+        return x(d.timestamp);
+      }).y(function(d) {
+        return y(d.comments);
+      });
+      plot.append('path').attr('d', line(data)).style('stroke', 'blue').style('fill', 'none');
       return plot.selectAll('circle').on('mouseover', function(d) {
         return _this.show_tooltip("" + d.title + "<br>" + d.author);
       }).on('mouseout', function(d) {

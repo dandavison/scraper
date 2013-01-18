@@ -122,6 +122,15 @@ class window.Plot extends BasePlot
             .attr('r', 5)
             .attr('fill', (d) -> color(d.author))
 
+        line = d3.svg.line()
+            .x((d) -> x(d.timestamp))
+            .y((d) -> y(d.comments))
+
+        plot.append('path')
+            .attr('d', line(data))
+            .style('stroke', 'blue')
+            .style('fill', 'none')
+
         plot.selectAll('circle')
             .on('mouseover', (d) =>
                 @show_tooltip("#{d.title}<br>#{d.author}"))

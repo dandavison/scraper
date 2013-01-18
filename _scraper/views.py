@@ -16,14 +16,14 @@ from models import Article
 SHELF_LIFE = timedelta(days=5)
 
 
-@login_required
+#@login_required
 def loading(request):
     return render_to_response(
         'loading.html',
         {})
 
 
-@login_required
+#@login_required
 def scrapey(request):
     return render_to_response(
         'loading.html',
@@ -63,7 +63,7 @@ def clean(text):
         return text
 
 
-@login_required
+# @login_required
 def scraper(request):
     def reshape(data):
         return {
@@ -78,9 +78,14 @@ def scraper(request):
     data = sorted((site, reshape(site_data))
                   for site, site_data in data.iteritems())
 
-    return render_to_response(
+    html = render_to_response(
         'scraper.html',
         {'data': data})
+
+    with open('/tmp/scraper.html', 'w') as fp:
+        fp.write(str(html))
+
+    return html
 
 
 def get_scrape_data():
