@@ -196,7 +196,7 @@ class FoxNews extends Scraper
         @url = '/politics'
 
     get_anchors: ->
-        'Trending in Politics': $('.trending-descending li a')
+        'Trending in Politics': $('.trending li a')
 
 
 class Gawker extends Scraper
@@ -314,8 +314,7 @@ class Politico extends Scraper
         $$ = cheerio.load(subtree)
 
         anchors = {}
-        for [category, name] in [['MostRead', 'Most Read'], ['MostEmailed', 'Most Emailed'], ['MostCommented', 'Most Commented']]
-            # FIXME: Why is $('#popularMostRead') etc empty with cheerio? (see also TheNation problem)
+        for [category, name] in [['StoriesBlogs', 'Stories/Blogs']]
             anchors[name] = $$("#popular#{category} ol li a")
         anchors
 
