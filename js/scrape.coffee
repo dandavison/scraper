@@ -196,7 +196,7 @@ class FoxNews extends Scraper
         @url = '/politics'
 
     get_anchors: ->
-        'Trending in Politics': $('.trending-descending li a')
+        'Trending in Politics': $('.trending li a')
 
 
 class Gawker extends Scraper
