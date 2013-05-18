@@ -530,7 +530,7 @@ SCRAPER_CLASSES = [
     WashingtonPostOpinions,
 #    Wonkette, #inappropriate!
     WSJ,
-    WSJWashwire,
+#    WSJWashwire, broken by third party changes; .mostPopular doesn't exist
     TheWeek,
     Yahoo,
 ]
