@@ -28,10 +28,13 @@ class Scraper
         url_getter = (a) =>
             href = a.attribs.href
             if href[0] is '/' then @domain + href else href
-        for category, $anchors of @get_anchors()
-            data[@name][category] = for a in $anchors
-                {text: @get_anchor_text(a).trim(),
-                url: url_getter(a)}
+        for category, anchors of @get_anchors()
+            # anchors may be native array or cheerio wrapped set
+            if not anchors instanceof Array
+                anchors = anchors.toArray()
+            data[@name][category] = for a in anchors
+                text: @get_anchor_text(a).trim()
+                url: url_getter(a)
 
     make_fake_entry: (content) ->
         [text: content, url: '']
