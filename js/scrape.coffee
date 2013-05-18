@@ -29,7 +29,7 @@ class Scraper
             href = a.attribs.href
             if href[0] is '/' then @domain + href else href
         for category, $anchors of @get_anchors()
-            data[@name][category] = for a in $anchors.toArray()
+            data[@name][category] = for a in $anchors
                 {text: @get_anchor_text(a).trim(),
                 url: url_getter(a)}
 
@@ -121,7 +121,7 @@ class CBS extends Scraper
         @url = '/2240-100_162-0.html'
 
     get_anchors: ->
-        'Most Popular Stories and Blog Posts': @$('#mostPopularFullPage ol li a')[0...5]
+        'Most Popular Stories and Blog Posts': @$('#mostPopularFullPage ol li a').toArray()[0...5]
 
 
 class CNN extends Scraper
@@ -163,7 +163,7 @@ class DailyMail extends Scraper
         @url = '/ushome'
 
     get_anchors: ->
-        'Most Read': @$('.news.tabbed-headlines .dm-tab-pane-hidden a')[0...3]
+        'Most Read': @$('.news.tabbed-headlines .dm-tab-pane-hidden a').toArray()[0...3]
 
 
 class DailyBeast extends Scraper
@@ -254,7 +254,7 @@ class NYDailyNews extends Scraper
         # These work in the browser, but not in jsdom?
         # 'Most Read': @$('#most-read-content div[style*="display: block"] a.gallery')
         # 'Most Shared': @$('#most-read-content div[style*="display: none"] a.gallery')
-        'Most Read + Most Shared': @$('#most-read-content a.gallery')[0...10]
+        'Most Read + Most Shared': @$('#most-read-content a.gallery').toArray()[0...10]
 
 
 class NewYorkTimes extends Scraper
@@ -316,7 +316,7 @@ class Politico extends Scraper
         anchors = {}
         for [category, name] in [['StoriesBlogs', 'Stories/Blogs']]
             debugger;
-            anchors[name] = @$("#popular#{category} ol li a")[0...10]
+            anchors[name] = @$("#popular#{category} ol li a").toArray()[0...10]
         anchors
 
 
@@ -336,7 +336,7 @@ class Reddit extends Scraper
         @url = '/r/politics'
 
     get_anchors: ->
-        'Hot': @$("#siteTable a.title")[0...10]
+        'Hot': @$("#siteTable a.title").toArray()[0...10]
 
 
 class RollingStone extends Scraper
@@ -487,7 +487,7 @@ class Yahoo extends Scraper
         @url = '/most-popular'
 
     get_anchors: ->
-        'Most popular': @$(".most-popular-ul li div.txt a:not(a.more)")[0...15]
+        'Most popular': @$(".most-popular-ul li div.txt a:not(a.more)").toArray()[0...15]
 
 
 SCRAPER_CLASSES = [
