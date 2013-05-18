@@ -30,7 +30,7 @@ class Scraper
             if href[0] is '/' then @domain + href else href
         for category, anchors of @get_anchors()
             # anchors may be native array or cheerio wrapped set
-            if not anchors instanceof Array
+            if not (anchors instanceof Array)
                 anchors = anchors.toArray()
             data[@name][category] = for a in anchors
                 text: @get_anchor_text(a).trim()
@@ -188,8 +188,29 @@ class DailyCaller extends Scraper
     get_anchors: ->
         anchors = {}
         for [category, name] in [['most-emailed', 'Most emailed'], ['most-popular', 'Most popular']]
-            anchors[name] = @$("#widget-#{category} .category-headline .blue a")
+            anchors[name] = @$("#widget-#{category} a")
         anchors
+
+
+class DailyKos extends Scraper
+    constructor: ->
+        @name = 'DailyKos'
+        @domain = 'http://www.dailykos.com'
+
+    get_anchors: ->
+        'Recommended': @$('#most-popular_div a.title')
+
+
+class DrudgeReport extends Scraper
+    constructor: ->
+        @name = 'DrudgeReport'
+        @domain = 'http://www.drudgereport.com'
+
+    get_anchors: ->
+        # FIXME: This isn't working
+        'Other headlines': @$('tt b a')  # @$('#drudgeTopHeadlines a')
+        'All links': @$('a')
+        # 'Main headline': @$(this.$('center font font').children())  # @$('#drudgeTopHeadlines center a')
 
 
 class FoxNews extends Scraper
@@ -318,7 +339,6 @@ class Politico extends Scraper
 
         anchors = {}
         for [category, name] in [['StoriesBlogs', 'Stories/Blogs']]
-            debugger;
             anchors[name] = @$("#popular#{category} ol li a").toArray()[0...10]
         anchors
 
@@ -499,7 +519,9 @@ SCRAPER_CLASSES = [
 #    CrooksAndLiars, # wasn't using
     DailyBeast,
     DailyCaller,
+    DailyKos,
     DailyMail,
+#    DrudgeReport, Failed to get this working
     FoxNews,
 #    Gawker, # was latest not most popular
     HuffingtonPost,
