@@ -460,15 +460,7 @@ class WSJWashwire extends Scraper
         @$(a).text() or text_getter(a)
 
     get_anchors: ->
-        anchors = {}
-        for category in ['Commented', 'Read']
-            # Find the id of the tab with the corresponding title;
-            # the links are in a div whose id is determined by the tab id.
-            $aa = @$(".mostPopular .tab a")
-            tab_id = @$(a for a in $aa.toArray() when @$(a).text() is category).parent().attr("id")
-            panel_id = tab_id.replace('_tab_', '_panel_')
-            anchors[category] = @$("##{panel_id} li a")
-        anchors
+        'Trending Now': @$('.trendingNow ul.newsItem li h2 a')
 
 
 class TheWeek extends Scraper
@@ -530,7 +522,7 @@ SCRAPER_CLASSES = [
     WashingtonPostOpinions,
 #    Wonkette, #inappropriate!
     WSJ,
-#    WSJWashwire, broken by third party changes; .mostPopular doesn't exist
+    WSJWashwire,
     TheWeek,
     Yahoo,
 ]
