@@ -222,7 +222,7 @@ class HuffingtonPost extends Scraper
         @domain = 'http://www.huffingtonpost.com'
 
     get_anchors: ->
-        'Most Popular': @$('.snp_most_popular_entry_desc a').filter -> @.attr('href').indexOf('javascript') isnt 0
+        'Most Popular': @$('a.most_popular_entry_title')
 
 
 class LATimes extends Scraper
