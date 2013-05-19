@@ -508,8 +508,8 @@ class Yahoo extends Scraper
 SCRAPER_CLASSES = [
     TheAtlantic,
     AtlanticWire,
-    BBCUSandCanadaArticle,
-    BBCUSandCanada,
+    # BBCUSandCanadaArticle,
+    # BBCUSandCanada,
     TheBlaze,
     BusinessInsider,
     BuzzFeed,
@@ -517,7 +517,7 @@ SCRAPER_CLASSES = [
     CNNNewsPulse,
     CBS,
 #    CrooksAndLiars, # wasn't using
-    DailyBeast,
+#    DailyBeast,
     DailyCaller,
     DailyKos,
     DailyMail,
@@ -526,7 +526,7 @@ SCRAPER_CLASSES = [
 #    Gawker, # was latest not most popular
     HuffingtonPost,
     LATimes
-    TheNation,
+#    TheNation,
     NYDailyNews
     NewYorkTimes,
 #    NewYorkTimesFrontPage, # Defeated by ajax tabs?
@@ -534,19 +534,19 @@ SCRAPER_CLASSES = [
 #    PoliticalWire, # Not working, js-populated links
     Politico,
     RealClearPolitics,
-    Reddit,
-    RollingStone,
+#    Reddit,
+#    RollingStone,
     Slate,
 #    ThinkProgress,
-    USAToday
-    WashingtonExaminer,
-    WashingtonPost,
-    WashingtonPostOpinions,
+#    USAToday
+#    WashingtonExaminer,
+#    WashingtonPost,
+#    WashingtonPostOpinions,
 #    Wonkette, #inappropriate!
-    WSJ,
+#    WSJ,
     WSJWashwire,
-    TheWeek,
-    Yahoo,
+#    TheWeek,
+#    Yahoo,
 ]
 
 

@@ -1022,7 +1022,7 @@
 
   })(Scraper);
 
-  SCRAPER_CLASSES = [TheAtlantic, AtlanticWire, BBCUSandCanadaArticle, BBCUSandCanada, TheBlaze, BusinessInsider, BuzzFeed, CNNNewsPulse, CBS, DailyBeast, DailyCaller, DailyKos, DailyMail, FoxNews, HuffingtonPost, LATimes, TheNation, NYDailyNews, NewYorkTimes, NPR, Politico, RealClearPolitics, Reddit, RollingStone, Slate, USAToday, WashingtonExaminer, WashingtonPost, WashingtonPostOpinions, WSJ, WSJWashwire, TheWeek, Yahoo];
+  SCRAPER_CLASSES = [TheAtlantic, AtlanticWire, TheBlaze, BusinessInsider, BuzzFeed, CNNNewsPulse, CBS, DailyCaller, DailyKos, DailyMail, FoxNews, HuffingtonPost, LATimes, NYDailyNews, NewYorkTimes, NPR, Politico, RealClearPolitics, Slate, WSJWashwire];
 
   global.data = {};
 
