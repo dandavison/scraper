@@ -94,7 +94,4 @@ def get_scrape_data():
     scraper.stdin.close()
 
     data = scraper.stdout.read()
-    try:
-        return json.loads(data)
-    except:
-        raise Exception('Error: received\n%s' % data)
+    return json.loads(data)
