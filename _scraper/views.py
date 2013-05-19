@@ -71,7 +71,13 @@ def scraper(request):
             'rows': izip_longest(*data.values(), fillvalue='')
         }
 
+    t0 = datetime.now()
+    print 'Fetching articles'
     data = get_scrape_data()
+    print 'Got articles from %d sources in %.1fs' % (
+        len(data),
+        (datetime.now() - t0).total_seconds(),
+    )
 
     data = store_and_filter(data)
 
