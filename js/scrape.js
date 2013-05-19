@@ -1034,6 +1034,11 @@
     }
   };
 
+  setTimeout((function() {
+    util.puts(JSON.stringify(data, null, 2));
+    return process.exit(0);
+  }), 28 * 1000);
+
   for (_i = 0, _len = SCRAPER_CLASSES.length; _i < _len; _i++) {
     scraper_cls = SCRAPER_CLASSES[_i];
     (new scraper_cls).scrape();
