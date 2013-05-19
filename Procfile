@@ -1,1 +1,1 @@
-web: gunicorn wsgi.py
+web: gunicorn scrapey.wsgi
