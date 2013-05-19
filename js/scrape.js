@@ -1035,6 +1035,7 @@
   };
 
   setTimeout((function() {
+    global.count = -1;
     util.puts(JSON.stringify(data, null, 2));
     return process.exit(0);
   }), 28 * 1000);
