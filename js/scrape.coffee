@@ -560,7 +560,7 @@ setTimeout (->
     global.count = -1
     util.puts JSON.stringify(data, null, 2)
     process.exit(0)),
-    28 * 1000
+    20 * 1000
 
 for scraper_cls in SCRAPER_CLASSES
     (new scraper_cls).scrape()
