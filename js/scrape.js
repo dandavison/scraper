@@ -928,14 +928,9 @@
     }
 
     WSJ.prototype.get_anchors = function() {
-      var anchors, category, name, _i, _len, _ref, _ref1;
-      anchors = {};
-      _ref = [['mostRead', 'Most Read'], ['mostEmailed', 'Most Emailed'], ['mostCommented', 'Most Commented']];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        _ref1 = _ref[_i], category = _ref1[0], name = _ref1[1];
-        anchors[name] = this.$("#mostPopularTab_panel_" + category + " ul li a");
-      }
-      return anchors;
+      return {
+        "Most popular": this.$('.trendingNow h2 a')
+      };
     };
 
     return WSJ;

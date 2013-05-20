@@ -452,10 +452,7 @@ class WSJ extends Scraper
         @url = '/public/page/news-world-business.html'
 
     get_anchors: ->
-        anchors = {}
-        for [category, name] in [['mostRead', 'Most Read'], ['mostEmailed', 'Most Emailed'], ['mostCommented', 'Most Commented']]
-            anchors[name] = @$("#mostPopularTab_panel_#{category} ul li a")
-        anchors
+        "Most popular": @$('.trendingNow h2 a')
 
 
 class WSJWashwire extends Scraper
