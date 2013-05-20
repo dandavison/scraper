@@ -262,11 +262,7 @@ class TheNation extends Scraper
         @url = '/politics'
 
     get_anchors: ->
-        anchors = {}
-        for [category, name] in [['most-read', 'Most Read'], ['most-commented', 'Most Commented']]
-            # FIXME: Why is @$('#most-read') etc empty with cheerio? (see also Politico problem)
-            anchors[name] = @$("##{category} ul div li a")
-        anchors
+        "Most Read": this.$("#quicktabs_tabpage_most_block_0 a")
 
 
 class NYDailyNews extends Scraper

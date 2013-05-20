@@ -548,14 +548,9 @@
     }
 
     TheNation.prototype.get_anchors = function() {
-      var anchors, category, name, _i, _len, _ref, _ref1;
-      anchors = {};
-      _ref = [['most-read', 'Most Read'], ['most-commented', 'Most Commented']];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        _ref1 = _ref[_i], category = _ref1[0], name = _ref1[1];
-        anchors[name] = this.$("#" + category + " ul div li a");
-      }
-      return anchors;
+      return {
+        "Most Read": this.$("#quicktabs_tabpage_most_block_0 a")
+      };
     };
 
     return TheNation;
