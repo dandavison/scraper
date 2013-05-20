@@ -549,7 +549,9 @@ SCRAPER_CLASSES = [
 global.data = {}
 global.count = SCRAPER_CLASSES.length
 global.callback = ->
-    if --count is 0 then util.puts JSON.stringify(data, null, 2)
+    if --count is 0
+        util.puts JSON.stringify(data, null, 2)
+        process.exit(0)
 
 # On heroku, responses must be delivered within 30s
 setTimeout (->

@@ -1025,7 +1025,8 @@
 
   global.callback = function() {
     if (--count === 0) {
-      return util.puts(JSON.stringify(data, null, 2));
+      util.puts(JSON.stringify(data, null, 2));
+      return process.exit(0);
     }
   };
 
