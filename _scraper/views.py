@@ -81,8 +81,11 @@ def scraper(request):
 
     data = store_and_filter(data)
 
-    data = sorted((site, reshape(site_data))
-                  for site, site_data in data.iteritems())
+    data = sorted(
+        ((site.lstrip('_'), reshape(site_data))
+         for site, site_data in data.iteritems()),
+        key=lambda (site, site_data): (
+            ('zzz' + site) if site.startswith('_') else site))
 
     return render_to_response(
         'scraper.html',

@@ -127,13 +127,14 @@ class CBS extends Scraper
         'Most Popular Stories and Blog Posts': @$('#mostPopularFullPage ol li a').toArray()[0...5]
 
 
-class CNN extends Scraper
+class _CNN extends Scraper
     constructor: ->
-        @name = 'CNN'
+        @name = '_CNN'
         @domain = 'http://www.cnn.com'
 
     get_anchors: ->
-        "Popular on Facebook (doesn't work due to facebook auth)": @$('#pmFacebook li a')
+        # @$('#pmFacebook li a')
+        "Popular on Facebook doesn't work due to facebook auth": []
 
 
 class CNNNewsPulse extends Scraper
@@ -169,14 +170,14 @@ class DailyMail extends Scraper
         'Most Read': @$('.news.tabbed-headlines .dm-tab-pane-hidden a').toArray()[0...3]
 
 
-class DailyBeast extends Scraper
+class _DailyBeast extends Scraper
     constructor: ->
-        @name = 'Daily Beast'
+        @name = '_Daily Beast'
         @domain = 'http://www.thedailybeast.com'
         @url = '/newsweek'
 
     get_anchors: ->
-        'Most Popular': @$('header:contains(Most Popular)').next().find('li a')
+        "Site has changed": []
 
 
 class DailyCaller extends Scraper
@@ -201,16 +202,17 @@ class DailyKos extends Scraper
         'Recommended': @$('#most-popular_div a.title')
 
 
-class DrudgeReport extends Scraper
+class _DrudgeReport extends Scraper
     constructor: ->
-        @name = 'DrudgeReport'
+        @name = '_DrudgeReport'
         @domain = 'http://www.drudgereport.com'
 
     get_anchors: ->
-        # FIXME: This isn't working
-        'Other headlines': @$('tt b a')  # @$('#drudgeTopHeadlines a')
-        'All links': @$('a')
-        # 'Main headline': @$(this.$('center font font').children())  # @$('#drudgeTopHeadlines center a')
+        "Failed to get this working so far": []
+        # # FIXME: This isn't working
+        # 'Other headlines': @$('tt b a')  # @$('#drudgeTopHeadlines a')
+        # 'All links': @$('a')
+        # # 'Main headline': @$(this.$('center font font').children())  # @$('#drudgeTopHeadlines center a')
 
 
 class FoxNews extends Scraper
@@ -223,18 +225,19 @@ class FoxNews extends Scraper
         'Trending in Politics': @$('.trending li a')
 
 
-class Gawker extends Scraper
+class _Gawker extends Scraper
     constructor: ->
-        @name = 'Gawker'
+        @name = '_Gawker'
         @domain = 'http://gawker.com/'
 
     get_anchors: ->
-        anchors = {}
-        # for [category, name] in [['popular', 'Most Popular'], ['commented', 'Most Commented']]
-        #     # @$("li#switch_#{category} a").click()
-        #     anchors[name] = @$('a.headline')
-        # anchors
-        'Default': @$('a.headline')
+        "No suitable most popular panel?": []
+        # anchors = {}
+        # # for [category, name] in [['popular', 'Most Popular'], ['commented', 'Most Commented']]
+        # #     # @$("li#switch_#{category} a").click()
+        # #     anchors[name] = @$('a.headline')
+        # # anchors
+        # 'Default': @$('a.headline')
 
 
 class HuffingtonPost extends Scraper
@@ -253,7 +256,7 @@ class LATimes extends Scraper
 
     get_anchors: ->
         'Most Viewed': @$(".mviewed a[href*='mostviewed']")
-        'Most Emailed': @$("a[href*='MostEmailed']")
+
 
 class TheNation extends Scraper
     constructor: ->
@@ -290,14 +293,15 @@ class NewYorkTimes extends Scraper
         anchors
 
 
-class NewYorkTimesFrontPage extends Scraper
+class _NewYorkTimesFrontPage extends Scraper
     constructor: ->
-        @name = 'New York Times'
+        @name = '_New York Times'
         @domain = 'http://www.nytimes.com'
 
     get_anchors: ->
-        # I think this one fails due to fancy ajax tabs.
-        'Most Emailed': @$('#mostPopContentMostEmailed a')
+        "Not possible: links created by javascript": []
+        # # I think this one fails due to fancy ajax tabs.
+        # 'Most Emailed': @$('#mostPopContentMostEmailed a')
 
 
 class NPR extends Scraper
@@ -307,19 +311,18 @@ class NPR extends Scraper
 
     get_anchors: ->
         anchors = {}
-        for [category, name] in [['viewed', 'Most Viewed'], ['comm', 'Most Commented (not working)'], ['mostViewed', 'Most Recommended (not working)']]
+        for [category, name] in [['viewed', 'Most Viewed']]
             anchors[name] = @$("#mostpopular .view#{category} ol li a")
         anchors
 
 
-class PoliticalWire extends Scraper
+class _PoliticalWire extends Scraper
     constructor: ->
-        @name = 'Political Wire'
+        @name = '_Political Wire'
         @domain = 'http://politicalwire.com'
 
     get_anchors: ->
-        # Not working; links populated by js on page load
-        'Most Popular Stories': @$('#popularthreads a')
+        "Not possible: links created by javascript" : []
 
 
 class Politico extends Scraper
@@ -358,16 +361,14 @@ class Reddit extends Scraper
         'Hot': @$("#siteTable a.title").toArray()[0...10]
 
 
-class RollingStone extends Scraper
+class _RollingStone extends Scraper
     constructor: ->
-        @name = 'Rolling Stone'
+        @name = '_Rolling Stone'
         @domain = 'http://www.rollingstone.com'
         @url = '/politics'
 
     get_anchors: ->
-        {}
-        # TODO: the page structure seems to have changed
-        # 'Most Popular': @$('h2:contains("Most Popular")').parent().find('div ul.politics li a:not(:has(img))')
+        "Site has changed": []
 
 
 class Slate extends Scraper
@@ -376,7 +377,7 @@ class Slate extends Scraper
         @domain = 'http://www.slate.com'
 
     get_anchors: ->
-        'Most Read & Most Shared (need to disect them)': @$('.most_read_and_commented li a').filter -> @.attr('href') isnt 'javascript:void(0)'
+        'Most Read & Most Shared': @$('.most_read_and_commented li a').filter -> @.attr('href') isnt 'javascript:void(0)'
 
 
 class ThinkProgress extends Scraper
@@ -504,36 +505,36 @@ SCRAPER_CLASSES = [
     TheBlaze,
     BusinessInsider,
     BuzzFeed,
-#    CNN, # Popular on Facebook requires facebook access
+    _CNN, # Popular on Facebook requires facebook access
     CNNNewsPulse,
     CBS,
-#    CrooksAndLiars, # wasn't using
-    DailyBeast,
+#    CrooksAndLiars,  # wasn't using
+    _DailyBeast,
     DailyCaller,
     DailyKos,
     DailyMail,
-#    DrudgeReport, Failed to get this working
+    _DrudgeReport,  # Failed to get this working
     FoxNews,
-#    Gawker, # was latest not most popular
+    _Gawker, # was latest not most popular
     HuffingtonPost,
     LATimes
     TheNation,
     NYDailyNews
     NewYorkTimes,
-#    NewYorkTimesFrontPage, # Defeated by ajax tabs?
+    _NewYorkTimesFrontPage,  # Defeated by ajax tabs?
     NPR,
-#    PoliticalWire, # Not working, js-populated links
+    _PoliticalWire,  # Not working, js-populated links
     Politico,
     RealClearPolitics,
     Reddit,
-    RollingStone,
+    _RollingStone,  # Site has changed
     Slate,
 #    ThinkProgress,
     USAToday
     WashingtonExaminer,
     WashingtonPost,
     WashingtonPostOpinions,
-#    Wonkette, #inappropriate!
+#    Wonkette,  #inappropriate!
     WSJ,
     WSJWashwire,
     TheWeek,
