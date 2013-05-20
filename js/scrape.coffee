@@ -404,7 +404,7 @@ class WashingtonExaminer extends Scraper
         @domain = 'http://washingtonexaminer.com'
 
     get_anchors: ->
-        'Most Popular': @$(".view-popular div ul li a")
+        'Most Read': @$('.mini-list a')
 
 
 class WashingtonPost extends Scraper

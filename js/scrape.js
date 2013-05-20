@@ -817,7 +817,7 @@
 
     WashingtonExaminer.prototype.get_anchors = function() {
       return {
-        'Most Popular': this.$(".view-popular div ul li a")
+        'Most Read': this.$('.mini-list a')
       };
     };
 
