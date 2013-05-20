@@ -797,7 +797,9 @@
     }
 
     USAToday.prototype.get_anchors = function() {
-      return {};
+      return {
+        "Most popular": this.$('.most-popular-items .headline a')
+      };
     };
 
     return USAToday;

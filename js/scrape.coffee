@@ -395,9 +395,7 @@ class USAToday extends Scraper
         @url = '/news'
 
     get_anchors: ->
-        {}
-        # TODO: the page structure seems to have changed
-        # 'Most Popular': @$('h3:contains("Most Popular in News")').parent().find('a')
+        "Most popular": @$('.most-popular-items .headline a')
 
 
 class WashingtonExaminer extends Scraper
