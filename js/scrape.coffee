@@ -202,17 +202,21 @@ class DailyKos extends Scraper
         'Recommended': @$('#most-popular_div a.title')
 
 
-class _DrudgeReport extends Scraper
+class DrudgeReport extends Scraper
     constructor: ->
         @name = '_DrudgeReport'
         @domain = 'http://www.drudgereport.com'
 
     get_anchors: ->
-        "Failed to get this working so far": []
-        # # FIXME: This isn't working
-        # 'Other headlines': @$('tt b a')  # @$('#drudgeTopHeadlines a')
-        # 'All links': @$('a')
-        # # 'Main headline': @$(this.$('center font font').children())  # @$('#drudgeTopHeadlines center a')
+        # drudge uses upper case tags which cheerio fails to parse
+        @body = (@body
+            .replace('<BR', '<br')
+            .replace('</BR>', '</br>')
+            .replace('<A', '<a')
+            .replace('</A>', '</a>')
+            .replace('HREF', 'href'))
+        @$ = cheerio.load(@body)
+        "Top Headlines": @$('#drudgeTopHeadlines a')
 
 
 class FoxNews extends Scraper
@@ -513,7 +517,7 @@ SCRAPER_CLASSES = [
     DailyCaller,
     DailyKos,
     DailyMail,
-    _DrudgeReport,  # Failed to get this working
+    DrudgeReport,
     FoxNews,
     _Gawker, # was latest not most popular
     HuffingtonPost,
