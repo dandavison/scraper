@@ -513,13 +513,13 @@ SCRAPER_CLASSES = [
     DailyMail,
     DrudgeReport,
     FoxNews,
-    _Gawker, # was latest not most popular
+#    _Gawker, # was latest not most popular
     HuffingtonPost,
     LATimes
     TheNation,
     NYDailyNews
     NewYorkTimes,
-    _NewYorkTimesFrontPage,  # Defeated by ajax tabs?
+#    _NewYorkTimesFrontPage,  # Defeated by ajax tabs?
     NPR,
     _PoliticalWire,  # Not working, js-populated links
     Politico,
