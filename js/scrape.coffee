@@ -236,12 +236,6 @@ class _Gawker extends Scraper
 
     get_anchors: ->
         "No suitable most popular panel?": []
-        # anchors = {}
-        # # for [category, name] in [['popular', 'Most Popular'], ['commented', 'Most Commented']]
-        # #     # @$("li#switch_#{category} a").click()
-        # #     anchors[name] = @$('a.headline')
-        # # anchors
-        # 'Default': @$('a.headline')
 
 
 class HuffingtonPost extends Scraper
