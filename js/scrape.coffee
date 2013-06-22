@@ -229,6 +229,15 @@ class FoxNews extends Scraper
         'Trending in Politics': @$('.trending li a')
 
 
+class Guardian extends Scraper
+    constructor: ->
+        @name = 'Guardian US'
+        @domain = 'http://www.guardiannews.com'
+
+    get_anchors: ->
+        'Most viewed': @$('#most-viewed a')
+
+
 class _Gawker extends Scraper
     constructor: ->
         @name = '_Gawker'
@@ -513,6 +522,7 @@ SCRAPER_CLASSES = [
     DailyMail,
     DrudgeReport,
     FoxNews,
+    Guardian,
 #    _Gawker, # was latest not most popular
     HuffingtonPost,
     LATimes
