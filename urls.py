@@ -14,6 +14,8 @@ urlpatterns = patterns(
                        
     url(r'^politix/stories/$', 'politix.views.stories'),
     url(r'^politix/stories/data/$', 'politix.views.stories_data'),
+
+    url(r'^feedpipe/politix/homepage/$', 'feedpipe.views.politix_homepage'),
 )
 
 urlpatterns += patterns(
