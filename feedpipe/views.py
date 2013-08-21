@@ -10,7 +10,11 @@ def politix_homepage(request):
     resp = requests.get(url)
     resp.raise_for_status()
     rss = etree.fromstring(resp.content)
-    _process_politix_homepage_feed(rss)
+    exclude = {
+        name.lower()
+        for name in request.GET.get('exclude', '').split(',')
+    }
+    _process_politix_homepage_feed(rss, exclude)
     buf = StringIO()
     rss.getroottree().write(buf)
     return HttpResponse(
@@ -20,13 +24,13 @@ def politix_homepage(request):
     )
 
 
-def _process_politix_homepage_feed(rss):
+def _process_politix_homepage_feed(rss, exclude):
     for el in rss.getiterator():
         if el.tag == 'item':
-            _process_politix_homepage_item(el)
+            _process_politix_homepage_item(el, exclude)
 
 
-def _process_politix_homepage_item(item):
+def _process_politix_homepage_item(item, exclude):
     creator = item.find('{http://purl.org/dc/elements/1.1/}creator')
     if creator is None:
         return
@@ -34,4 +38,6 @@ def _process_politix_homepage_item(item):
     if link is None:
         print "Expected link element"
     else:
-        link.text += ' @Politix%s' % creator.text.split()[0]
+        name = creator.text.split()[0]
+        if name.lower() not in exclude:
+            link.text += ' @Politix%s' % name
