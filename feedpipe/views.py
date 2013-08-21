@@ -30,8 +30,8 @@ def _process_politix_homepage_item(item):
     creator = item.find('{http://purl.org/dc/elements/1.1/}creator')
     if creator is None:
         return
-    title = item.find('title')
-    if title is None:
-        print "Expected title element"
+    link = item.find('link')
+    if link is None:
+        print "Expected link element"
     else:
-        title.text += ' @Politix%s' % creator.text.split()[0]
+        link.text += ' @Politix%s' % creator.text.split()[0]
