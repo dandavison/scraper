@@ -5,6 +5,14 @@ import requests
 from django.http import HttpResponse
 
 
+AUTHORS = {
+    'dain',
+    'david',
+    'lisa',
+    'mary',
+}
+
+
 def politix_homepage(request):
     url = 'http://politix.topix.com/rssfeeds/homepage'
     resp = requests.get(url)
@@ -39,5 +47,5 @@ def _process_politix_homepage_item(item, exclude):
         print "Expected link element"
     else:
         name = creator.text.split()[0]
-        if name.lower() not in exclude:
+        if name.lower() in AUTHORS and name.lower() not in exclude:
             link.text += ' @Politix%s' % name
