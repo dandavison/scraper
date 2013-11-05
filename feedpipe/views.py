@@ -48,4 +48,4 @@ def _process_politix_homepage_item(item, exclude):
     else:
         name = creator.text.split()[0]
         if name.lower() in AUTHORS and name.lower() not in exclude:
-            title.text += ' via @Politix%s' % name
+            title.text += ' via @@Politix%s' % name
