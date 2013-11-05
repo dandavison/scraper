@@ -31,7 +31,7 @@ def politix_homepage(request):
     content = buf.getvalue()
     # Place a non-breaking space infront of the @ in an attempt to
     # avoid stripping of the @mention by ifttt.
-    content = content.replace(_PLACEHOLDER, ' ')
+    content = content.replace(_PLACEHOLDER, '.')
     return HttpResponse(
         content=content,
         content_type='text/xml',
