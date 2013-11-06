@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from lxml import etree
 from StringIO import StringIO
 import requests
@@ -13,8 +12,6 @@ AUTHORS = {
     'mary',
 }
 
-_PLACEHOLDER = '__xZZZx_PLACEHOLDER_xZZZx__'
-
 
 def politix_homepage(request):
     url = 'http://politix.topix.com/rssfeeds/homepage'
@@ -28,12 +25,8 @@ def politix_homepage(request):
     _process_politix_homepage_feed(rss, exclude)
     buf = StringIO()
     rss.getroottree().write(buf)
-    content = buf.getvalue()
-    # Place a non-breaking space infront of the @ in an attempt to
-    # avoid stripping of the @mention by ifttt.
-    content = content.replace(_PLACEHOLDER, '\\')
     return HttpResponse(
-        content=content,
+        content=buf.getvalue(),
         content_type='text/xml',
         status=200,
     )
@@ -55,4 +48,4 @@ def _process_politix_homepage_item(item, exclude):
     else:
         name = creator.text.split()[0]
         if name.lower() in AUTHORS and name.lower() not in exclude:
-            title.text += ' via %s@Politix%s' % (_PLACEHOLDER, name)
+            title.text += ' via @Politix%s' % name
