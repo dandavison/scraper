@@ -8,6 +8,7 @@ from subprocess import Popen, PIPE
 
 from django.db import settings
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 
 from models import Article
 
@@ -15,12 +16,14 @@ from models import Article
 SHELF_LIFE = timedelta(days=5)
 
 
+@login_required
 def loading(request):
     return render_to_response(
         'loading.html',
         {})
 
 
+@login_required
 def scrapey(request):
     return render_to_response(
         'loading.html',
@@ -60,6 +63,7 @@ def clean(text):
         return text
 
 
+@login_required
 def scraper(request):
     def reshape(data):
         return {
@@ -67,12 +71,21 @@ def scraper(request):
             'rows': izip_longest(*data.values(), fillvalue='')
         }
 
+    t0 = datetime.now()
+    print 'Fetching articles'
     data = get_scrape_data()
+    print 'Got articles from %d sources in %.1fs' % (
+        len(data),
+        (datetime.now() - t0).total_seconds(),
+    )
 
     data = store_and_filter(data)
 
-    data = sorted((site, reshape(site_data))
-                  for site, site_data in data.iteritems())
+    data = sorted(
+        ((site.lstrip('_'), reshape(site_data))
+         for site, site_data in data.iteritems()),
+        key=lambda (site, site_data): (
+            ('zzz' + site) if site.startswith('_') else site))
 
     return render_to_response(
         'scraper.html',
@@ -81,13 +94,13 @@ def scraper(request):
 
 def get_scrape_data():
     scrape = os.path.join(settings.SITE_DIRECTORY,
-                          'js/scrape.coffee')
+                          'js/scrape.js')
 
-    scraper = Popen(['coffee', scrape], stdin=PIPE, stdout=PIPE)
+    node = os.path.join(settings.SITE_DIRECTORY,
+                        'bin/node')
+
+    scraper = Popen([node, scrape], stdin=PIPE, stdout=PIPE)
     scraper.stdin.close()
 
     data = scraper.stdout.read()
-    try:
-        return json.loads(data)
-    except:
-        raise Exception('Error: received\n%s' % data)
+    return json.loads(data)

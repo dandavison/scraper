@@ -5,14 +5,13 @@
   </head>
   <body>
     <div class='vertical-padding'></div>
-    <a href="{% url 'scrapey.views.loading' %}">
-      <img src='/static/img/nyantocat.gif' class='loading-image'></img>
+    <a href="{% url _scraper.views.loading %}">
+      <img src='/static/img/nyantocat.gif' class='loading-image'
+           {% if not nofetch %}
+           onload='window.location = "{% url _scraper.views.scraper %}"'
+           {% endif %}
+           ></img>
     </a>
     <div class="credit">Credit: <a href="http://www.cameronmcefee.com/">Cameron McEfee</a> / <a href="http://github.com">github</a></div>
-{% if not nofetch %}
-    <script type="text/javascript">
-      window.location = "{% url 'scrapey.views.scraper' %}";
-    </script>
-{% endif %}
   </body>
 </html>
