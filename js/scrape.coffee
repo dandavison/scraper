@@ -617,6 +617,7 @@ scraper_classes = [
 scraper_classes_social = [
     BingTrendingOnFacebook,
     # Breitbart,
+    BuzzFeed,
     DailyKos,
     DrudgeReport,
     FoxNews,

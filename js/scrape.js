@@ -1169,7 +1169,7 @@
 
   scraper_classes = [TheAtlantic, BBCUSandCanadaArticle, BBCUSandCanada, BuzzFeed, DailyKos, DailyMail, DrudgeReport, Guardian, HuffingtonPost, TheNation, NYDailyNews, NewYorkTimes, Politico, RealClearPolitics, Reddit, Slate, USAToday, WashingtonPost, WashingtonPostOpinions, WSJ, WSJWashwire, TheWeek];
 
-  scraper_classes_social = [BingTrendingOnFacebook, DailyKos, DrudgeReport, FoxNews, HuffingtonPost, NewYorkTimes, Politico, Reason, Reddit, Salon, Slate, TheAtlantic, TheBlazeSocial, Upworthy, USAToday, WashingtonPost, WashingtonPostOpinions, WSJ];
+  scraper_classes_social = [BingTrendingOnFacebook, BuzzFeed, DailyKos, DrudgeReport, FoxNews, HuffingtonPost, NewYorkTimes, Politico, Reason, Reddit, Salon, Slate, TheAtlantic, TheBlazeSocial, Upworthy, USAToday, WashingtonPost, WashingtonPostOpinions, WSJ];
 
   scraper_classes = scraper_classes_social;
 
