@@ -620,7 +620,7 @@ scraper_classes_social = [
     BingTrendingOnFacebook,
     Breitbart,
     DailyKos,
-    Drudge,
+    DrudgeReport,
     FoxNews,
     Gawker,
     HuffingtonPost,
