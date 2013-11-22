@@ -1169,9 +1169,9 @@
 
   })(Scraper);
 
-  scraper_classes = [TheAtlantic, AtlanticWire, BBCUSandCanadaArticle, BBCUSandCanada, BusinessInsider, BuzzFeed, _CNN, CNNNewsPulse, CBS, _DailyBeast, DailyCaller, DailyKos, DailyMail, DrudgeReport, FoxNews, Guardian, HuffingtonPost, LATimes, TheNation, NYDailyNews, NewYorkTimes, NPR, _PoliticalWire, Politico, RealClearPolitics, Reddit, _RollingStone, Slate, USAToday, WashingtonExaminer, WashingtonPost, WashingtonPostOpinions, WSJ, WSJWashwire, TheWeek, Yahoo];
+  scraper_classes = [TheAtlantic, BBCUSandCanadaArticle, BBCUSandCanada, BuzzFeed, DailyKos, DailyMail, DrudgeReport, Guardian, HuffingtonPost, TheNation, NYDailyNews, NewYorkTimes, Politico, RealClearPolitics, Reddit, Slate, USAToday, WashingtonPost, WashingtonPostOpinions, WSJ, WSJWashwire, TheWeek];
 
-  scraper_classes_social = [BingTrendingOnFacebook, Breitbart, FoxNews, Gawker, PolicyMic, Reason, Salon, Slate, TheBlazeSocial, ThinkProgressSocial, Upworthy];
+  scraper_classes_social = [BingTrendingOnFacebook, Breitbart, DailyKos, Drudge, FoxNews, Gawker, HuffingtonPost, NewYorkTimes, PolicyMic, Politico, Reason, Reddit, Salon, Slate, TheAtlantic, TheBlazeSocial, ThinkProgressSocial, Upworthy, USAToday, WashingtonPost, WashingtonPostOpinions, WSJ];
 
   scraper_classes = scraper_classes_social;
 
