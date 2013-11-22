@@ -620,7 +620,7 @@ scraper_classes_social = [
     DailyKos,
     DrudgeReport,
     FoxNews,
-    Gawker,
+    # Gawker,
     HuffingtonPost,
     NewYorkTimes,
     # PolicyMic,
