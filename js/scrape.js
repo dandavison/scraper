@@ -221,7 +221,7 @@
     __extends(TheBlazeSocial, _super);
 
     function TheBlazeSocial() {
-      this.name = 'The Blaze';
+      this.name = 'Blaze';
       this.domain = 'http://www.theblaze.com';
     }
 

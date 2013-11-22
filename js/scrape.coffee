@@ -92,7 +92,7 @@ class BingTrendingOnFacebook extends Scraper
 
 class TheBlazeSocial extends Scraper
     constructor: ->
-        @name = 'The Blaze'
+        @name = 'Blaze'
         @domain = 'http://www.theblaze.com'
 
     get_anchors: -> 'Social': @$('ul#tblz_ps_tab_social li a.tblz_ps_title')
