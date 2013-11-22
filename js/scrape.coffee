@@ -617,13 +617,13 @@ scraper_classes = [
 ]
 
 scraper_classes_social = [
-    BingTrendingOnFacebook
+    BingTrendingOnFacebook,
     Breitbart,
     FoxNews,
     Gawker,
     PolicyMic,
     Reason,
-    salon,
+    Salon,
     Slate,
     TheBlazeSocial,
     ThinkProgressSocial,
