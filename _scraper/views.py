@@ -65,6 +65,12 @@ def clean(text):
 
 @login_required
 def scraper(request):
+
+    # Some housekeeping that should be done outside the request-response cycle
+    (Article.objects
+     .filter(pub_date__lt=datetime.now() - timedelta(days=7))
+     .delete())
+
     def reshape(data):
         return {
             'columns': data.keys(),
