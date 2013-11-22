@@ -709,9 +709,7 @@
 
     PolicyMic.prototype.get_anchors = function() {
       return {
-        "Recommended stories": this.$('.recommended-story a'),
-        "a": this.$('a.link-article-image'),
-        "aa": this.$('a')
+        "Recommended stories": this.$('.recommended-story a')
       };
     };
 
@@ -1171,7 +1169,7 @@
 
   scraper_classes = [TheAtlantic, BBCUSandCanadaArticle, BBCUSandCanada, BuzzFeed, DailyKos, DailyMail, DrudgeReport, Guardian, HuffingtonPost, TheNation, NYDailyNews, NewYorkTimes, Politico, RealClearPolitics, Reddit, Slate, USAToday, WashingtonPost, WashingtonPostOpinions, WSJ, WSJWashwire, TheWeek];
 
-  scraper_classes_social = [BingTrendingOnFacebook, Breitbart, DailyKos, DrudgeReport, FoxNews, Gawker, HuffingtonPost, NewYorkTimes, PolicyMic, Politico, Reason, Reddit, Salon, Slate, TheAtlantic, TheBlazeSocial, ThinkProgressSocial, Upworthy, USAToday, WashingtonPost, WashingtonPostOpinions, WSJ];
+  scraper_classes_social = [BingTrendingOnFacebook, DailyKos, DrudgeReport, FoxNews, Gawker, HuffingtonPost, NewYorkTimes, Politico, Reason, Reddit, Salon, Slate, TheAtlantic, TheBlazeSocial, Upworthy, USAToday, WashingtonPost, WashingtonPostOpinions, WSJ];
 
   scraper_classes = scraper_classes_social;
 

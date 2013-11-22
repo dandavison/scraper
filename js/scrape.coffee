@@ -348,8 +348,6 @@ class PolicyMic extends Scraper
 
     get_anchors: ->
         "Recommended stories": @$('.recommended-story a')
-        "a": @$('a.link-article-image')
-        "aa": @$('a')
 
 
 class _PoliticalWire extends Scraper
@@ -618,14 +616,14 @@ scraper_classes = [
 
 scraper_classes_social = [
     BingTrendingOnFacebook,
-    Breitbart,
+    # Breitbart,
     DailyKos,
     DrudgeReport,
     FoxNews,
     Gawker,
     HuffingtonPost,
     NewYorkTimes,
-    PolicyMic,
+    # PolicyMic,
     Politico,
     Reason,
     Reddit,
@@ -633,7 +631,7 @@ scraper_classes_social = [
     Slate,
     TheAtlantic,
     TheBlazeSocial,
-    ThinkProgressSocial,
+    # ThinkProgressSocial,
     Upworthy,
     USAToday,
     WashingtonPost,
