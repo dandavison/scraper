@@ -84,10 +84,10 @@ class BBCUSandCanadaArticle extends Scraper
 class BingTrendingOnFacebook extends Scraper
     constructor: ->
         @name = 'Bing'
-        @domain = 'http://www.bing.com/news?q=trending+on+facebook'
+        @domain = 'http://www.bing.com/news'
 
     get_anchors: ->
-        'Trending News on Facebook': @$('.newstitle a').toArray()[0...10]
+        'Trending News on Facebook': @$('div.article[name="facebook"] a')
 
 
 class TheBlazeSocial extends Scraper

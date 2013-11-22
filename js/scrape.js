@@ -203,12 +203,12 @@
 
     function BingTrendingOnFacebook() {
       this.name = 'Bing';
-      this.domain = 'http://www.bing.com/news?q=trending+on+facebook';
+      this.domain = 'http://www.bing.com/news';
     }
 
     BingTrendingOnFacebook.prototype.get_anchors = function() {
       return {
-        'Trending News on Facebook': this.$('.newstitle a').toArray().slice(0, 10)
+        'Trending News on Facebook': this.$('div.article[name="facebook"] a')
       };
     };
 
