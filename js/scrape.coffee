@@ -504,7 +504,7 @@ class Yahoo extends Scraper
         'Most popular': @$(".most-popular-ul li div.txt a:not(a.more)").toArray()[0...15]
 
 
-SCRAPER_CLASSES = [
+scraper_classes = [
     TheAtlantic,
     AtlanticWire,
     BBCUSandCanadaArticle,
@@ -549,9 +549,13 @@ SCRAPER_CLASSES = [
     Yahoo,
 ]
 
+scraper_classes_social = [
+]
+
+scraper_classes = scraper_classes_social
 
 global.data = {}
-global.count = SCRAPER_CLASSES.length
+global.count = scraper_classes.length
 global.callback = ->
     if --count is 0
         util.puts JSON.stringify(data, null, 2)
@@ -564,5 +568,5 @@ setTimeout (->
     process.exit(0)),
     20 * 1000
 
-for scraper_cls in SCRAPER_CLASSES
+for scraper_cls in scraper_classes
     (new scraper_cls).scrape()
