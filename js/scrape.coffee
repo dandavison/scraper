@@ -81,12 +81,30 @@ class BBCUSandCanadaArticle extends Scraper
         anchors
 
 
-class TheBlaze extends Scraper
+class BingTrendingOnFacebook extends Scraper
+    constructor: ->
+        @name = 'Bing'
+        @domain = 'http://www.bing.com/news?q=trending+on+facebook'
+
+    get_anchors: ->
+        'Trending News on Facebook': @$('.newstitle a').toArray()[0...10]
+
+
+class TheBlazeSocial extends Scraper
     constructor: ->
         @name = 'The Blaze'
         @domain = 'http://www.theblaze.com'
 
-    get_anchors: -> 'Popular Stories': @$('h3:contains(Popular Stories)').parent().find('li a.title')
+    get_anchors: -> 'Social': @$('ul#tblz_ps_tab_social li a.tblz_ps_title')
+
+
+class Breitbart extends Scraper
+    constructor: ->
+        @name = 'Breitbart'
+        @domain = 'http://www.breitbart.com/'
+
+    get_anchors: ->
+        'Most Popular': @$('.disqus-popular-threads a')
 
 
 class BusinessInsider extends Scraper
@@ -223,10 +241,10 @@ class FoxNews extends Scraper
     constructor: ->
         @name = 'Fox News: Politics'
         @domain = 'http://www.foxnews.com'
-        @url = '/politics'
 
     get_anchors: ->
-        'Trending in Politics': @$('.trending li a')
+        'Fox News Now': @$('.trending-descending .dv-item a')
+
 
 
 class Guardian extends Scraper
@@ -238,13 +256,13 @@ class Guardian extends Scraper
         'Most viewed': @$('#most-viewed a')
 
 
-class _Gawker extends Scraper
+class Gawker extends Scraper
     constructor: ->
-        @name = '_Gawker'
+        @name = 'Gawker'
         @domain = 'http://gawker.com/'
 
     get_anchors: ->
-        "No suitable most popular panel?": []
+        "Top Stories": @$('.sidebar-content .headline a')
 
 
 class HuffingtonPost extends Scraper
@@ -323,6 +341,17 @@ class NPR extends Scraper
         anchors
 
 
+class PolicyMic extends Scraper
+    constructor: ->
+        @name = 'PolicyMic politics'
+        @domain = 'http://www.policymic.com/politics'
+
+    get_anchors: ->
+        "Recommended stories": @$('.recommended-story a')
+        "a": @$('a.link-article-image')
+        "aa": @$('a')
+
+
 class _PoliticalWire extends Scraper
     constructor: ->
         @name = '_Political Wire'
@@ -358,6 +387,15 @@ class RealClearPolitics extends Scraper
         'Most Read': @$('#most-read-box a.most-read')
 
 
+class Reason extends Scraper
+    constructor: ->
+        @name = 'Reason.com'
+        @domain = 'http://reason.com/'
+
+    get_anchors: ->
+        'Most Viewed': @$('ul.stories[data-category="viewed"] a')
+
+
 class Reddit extends Scraper
     constructor: ->
         @name = 'Reddit'
@@ -378,13 +416,22 @@ class _RollingStone extends Scraper
         "Site has changed": []
 
 
+class Salon extends Scraper
+    constructor: ->
+        @name = 'Salon'
+        @domain = 'http://www.salon.com/'
+
+    get_anchors: ->
+        'Most Read': @$('aside.rightSidebar ul li.smr-post a').toArray()[0...5]
+
+
 class Slate extends Scraper
     constructor: ->
         @name = 'Slate'
         @domain = 'http://www.slate.com'
 
     get_anchors: ->
-        'Most Read & Most Shared': @$('.most_read_and_commented li a').filter -> @.attr('href') isnt 'javascript:void(0)'
+        'Most Read & Most Shared': @$('.mostshared a')
 
 
 class ThinkProgress extends Scraper
@@ -394,6 +441,26 @@ class ThinkProgress extends Scraper
 
     get_anchors: ->
         'Facebook & Twitter (need to disect them)': @$('.popular li a')
+
+
+class ThinkProgressSocial extends Scraper
+    constructor: ->
+        @name = 'ThinkProgress'
+        @domain = 'http://thinkprogress.org'
+
+    get_anchors: ->
+        'Most Shared': @$('div#newswhip-trending .tp-progress-entry a')
+
+
+class Upworthy extends Scraper
+    constructor: ->
+        @name = 'Upworthy'
+        @domain = 'http://www.upworthy.com'
+
+    get_anchors: ->
+        'Featured': @$('.featured-row #slide-content a.thumb')
+
+    get_anchor_text: (a) -> a.attribs.href[1...]
 
 
 class USAToday extends Scraper
@@ -509,7 +576,7 @@ scraper_classes = [
     AtlanticWire,
     BBCUSandCanadaArticle,
     BBCUSandCanada,
-    TheBlaze,
+#    TheBlaze,
     BusinessInsider,
     BuzzFeed,
     _CNN, # Popular on Facebook requires facebook access
@@ -550,6 +617,17 @@ scraper_classes = [
 ]
 
 scraper_classes_social = [
+    BingTrendingOnFacebook
+    Breitbart,
+    FoxNews,
+    Gawker,
+    PolicyMic,
+    Reason,
+    salon,
+    Slate,
+    TheBlazeSocial,
+    ThinkProgressSocial,
+    Upworthy,
 ]
 
 scraper_classes = scraper_classes_social
