@@ -32,7 +32,6 @@ def scrapey(request):
 
 def store_and_filter(data):
     now = datetime.now()
-    stale = []
     for site in data:
         for category in data[site]:
             fresh = []
@@ -54,6 +53,7 @@ def store_and_filter(data):
 
 
 TITLE_REGEXP = re.compile('(^[0-9][.:][ \n\t]?)?[ \n\t]*([^\n\t]*)')
+
 
 def clean(text):
     match = TITLE_REGEXP.match(text)
