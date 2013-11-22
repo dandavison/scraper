@@ -573,61 +573,72 @@ class Yahoo extends Scraper
 
 scraper_classes = [
     TheAtlantic,
-    AtlanticWire,
+#   AtlanticWire,
     BBCUSandCanadaArticle,
     BBCUSandCanada,
 #    TheBlaze,
-    BusinessInsider,
+#    BusinessInsider,
     BuzzFeed,
-    _CNN, # Popular on Facebook requires facebook access
-    CNNNewsPulse,
-    CBS,
+#    _CNN, # Popular on Facebook requires facebook access
+#    CNNNewsPulse,
+#    CBS,
 #    CrooksAndLiars,  # wasn't using
-    _DailyBeast,
-    DailyCaller,
+#    _DailyBeast,
+#    DailyCaller,
     DailyKos,
     DailyMail,
     DrudgeReport,
-    FoxNews,
+#    FoxNews,
     Guardian,
 #    _Gawker, # was latest not most popular
     HuffingtonPost,
-    LATimes
+#    LATimes
     TheNation,
     NYDailyNews
     NewYorkTimes,
 #    _NewYorkTimesFrontPage,  # Defeated by ajax tabs?
-    NPR,
-    _PoliticalWire,  # Not working, js-populated links
+#    NPR,
+#    _PoliticalWire,  # Not working, js-populated links
     Politico,
     RealClearPolitics,
     Reddit,
-    _RollingStone,  # Site has changed
+#    _RollingStone,  # Site has changed
     Slate,
 #    ThinkProgress,
     USAToday
-    WashingtonExaminer,
+#    WashingtonExaminer,
     WashingtonPost,
     WashingtonPostOpinions,
 #    Wonkette,  #inappropriate!
     WSJ,
     WSJWashwire,
     TheWeek,
-    Yahoo,
+#    Yahoo,
 ]
 
 scraper_classes_social = [
-    BingTrendingOnFacebook
+    BingTrendingOnFacebook,
     Breitbart,
+    DailyKos,
+    Drudge,
     FoxNews,
     Gawker,
+    HuffingtonPost,
+    NewYorkTimes,
     PolicyMic,
+    Politico,
     Reason,
+    Reddit,
     salon,
     Slate,
+    TheAtlantic,
     TheBlazeSocial,
     ThinkProgressSocial,
     Upworthy,
+    USAToday,
+    WashingtonPost,
+    WashingtonPostOpinions,
+    WSJ,
 ]
 
 scraper_classes = scraper_classes_social
