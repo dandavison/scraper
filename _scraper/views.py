@@ -17,17 +17,25 @@ SHELF_LIFE = timedelta(days=5)
 
 
 @login_required
-def loading(request):
+def loading(request, sources):
     return render_to_response(
         'loading.html',
-        {})
+        {'sources': sources})
 
 
 @login_required
-def scrapey(request):
+def loading_politix(request):
     return render_to_response(
         'loading.html',
-        {'nofetch': True})
+        {'sources': 'politix'})
+
+
+@login_required
+def scrapey(request, sources):
+    return render_to_response(
+        'loading.html',
+        {'nofetch': True,
+         'sources': sources})
 
 
 def store_and_filter(data):
@@ -64,7 +72,7 @@ def clean(text):
 
 
 @login_required
-def scraper(request):
+def scraper(request, sources):
 
     # Some housekeeping that should be done outside the request-response cycle
     (Article.objects
@@ -79,7 +87,7 @@ def scraper(request):
 
     t0 = datetime.now()
     print 'Fetching articles'
-    data = get_scrape_data()
+    data = get_scrape_data(sources)
     print 'Got articles from %d sources in %.1fs' % (
         len(data),
         (datetime.now() - t0).total_seconds(),
@@ -98,14 +106,16 @@ def scraper(request):
         {'data': data})
 
 
-def get_scrape_data():
+def get_scrape_data(sources):
     scrape = os.path.join(settings.SITE_DIRECTORY,
                           'js/scrape.js')
 
     node = os.path.join(settings.SITE_DIRECTORY,
                         'bin/node')
 
-    scraper = Popen([node, scrape], stdin=PIPE, stdout=PIPE)
+    assert sources in {'social', 'politix', 'offbeat'}
+
+    scraper = Popen([node, scrape, sources], stdin=PIPE, stdout=PIPE)
     scraper.stdin.close()
 
     data = scraper.stdout.read()

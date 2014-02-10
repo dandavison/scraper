@@ -9,9 +9,9 @@ urlpatterns = patterns(
     }),
 
     url(r'^$', '_scraper.views.loading'),
-    url(r'^scrapey$', '_scraper.views.scrapey'),
-    url(r'^scraper$', '_scraper.views.scraper'),
-                       
+    url(r'^scrapey/(?P<sources>\w+)/$', '_scraper.views.loading'),
+    url(r'^scraper/(?P<sources>\w+)/$', '_scraper.views.scraper'),
+
     url(r'^politix/stories/$', 'politix.views.stories'),
     url(r'^politix/stories/data/$', 'politix.views.stories_data'),
 

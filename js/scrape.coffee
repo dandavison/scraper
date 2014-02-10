@@ -589,7 +589,7 @@ class Yahoo extends Scraper
         'Most popular': @$(".most-popular-ul li div.txt a:not(a.more)").toArray()[0...15]
 
 
-scraper_classes = [
+scraper_classes_politix_all = [
     TheAtlantic,
 #   AtlanticWire,
     BBCUSandCanadaArticle,
@@ -634,7 +634,7 @@ scraper_classes = [
 #    Yahoo,
 ]
 
-scraper_classes_social = [
+scraper_classes_politix_social = [
     BingTrendingOnFacebook,
     # Breitbart,
     # BuzzFeed,
@@ -660,7 +660,33 @@ scraper_classes_social = [
     WSJ,
 ]
 
-scraper_classes = scraper_classes_social
+
+scraper_classes_offbeat = [
+    BingTrendingOnFacebook,
+    Gawker,
+    HuffingtonPost,
+    RedditWTF,
+    RedditAww,
+    Upworthy,
+]
+
+
+#################################################################
+#
+# main
+#
+
+arg = process.argv[2]
+if arg is "offbeat"
+    scraper_classes = scraper_classes_offbeat
+else if arg is "politix"
+    scraper_classes = scraper_classes_politix_social
+else if arg is "politix_all"
+    scraper_classes = scraper_classes_politix_all
+else
+    throw new Error("Unrecognized argument: " + arg)
+    process.exit(1)
+
 
 global.data = {}
 global.count = scraper_classes.length

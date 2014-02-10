@@ -8,7 +8,7 @@
     <a href="{% url _scraper.views.loading %}">
       <img src='/static/img/nyantocat.gif' class='loading-image'
            {% if not nofetch %}
-           onload='window.location = "{% url _scraper.views.scraper %}"'
+           onload='window.location = "{% url _scraper.views.scraper sources %}"'
            {% endif %}
            ></img>
     </a>
