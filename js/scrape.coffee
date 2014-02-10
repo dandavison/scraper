@@ -256,6 +256,7 @@ class Guardian extends Scraper
         'Most viewed': @$('#most-viewed a')
 
 
+# Was latest not most popular?
 class Gawker extends Scraper
     constructor: ->
         @name = 'Gawker'
@@ -318,6 +319,7 @@ class NewYorkTimes extends Scraper
         anchors
 
 
+# Defeated by ajax tabs?
 class _NewYorkTimesFrontPage extends Scraper
     constructor: ->
         @name = '_New York Times'
@@ -350,6 +352,7 @@ class PolicyMic extends Scraper
         "Recommended stories": @$('.recommended-story a')
 
 
+# Not working, js-populated links
 class _PoliticalWire extends Scraper
     constructor: ->
         @name = '_Political Wire'
@@ -424,6 +427,7 @@ class RedditAww extends Scraper
         'Hot': @$(".entry a.title").toArray()[0...10]
 
 
+# Site has changed
 class _RollingStone extends Scraper
     constructor: ->
         @name = '_Rolling Stone'
@@ -591,60 +595,36 @@ class Yahoo extends Scraper
 
 scraper_classes_politix_all = [
     TheAtlantic,
-#   AtlanticWire,
     BBCUSandCanadaArticle,
     BBCUSandCanada,
-#    TheBlaze,
-#    BusinessInsider,
     BuzzFeed,
-#    _CNN, # Popular on Facebook requires facebook access
-#    CNNNewsPulse,
-#    CBS,
-#    CrooksAndLiars,  # wasn't using
-#    _DailyBeast,
-#    DailyCaller,
     DailyKos,
     DailyMail,
     DrudgeReport,
-#    FoxNews,
     Guardian,
-#    _Gawker, # was latest not most popular
     HuffingtonPost,
-#    LATimes
     TheNation,
     NYDailyNews
     NewYorkTimes,
-#    _NewYorkTimesFrontPage,  # Defeated by ajax tabs?
-#    NPR,
-#    _PoliticalWire,  # Not working, js-populated links
     Politico,
     RealClearPolitics,
     Reddit,
-#    _RollingStone,  # Site has changed
     Slate,
-#    ThinkProgress,
     USAToday
-#    WashingtonExaminer,
     WashingtonPost,
     WashingtonPostOpinions,
-#    Wonkette,  #inappropriate!
     WSJ,
     WSJWashwire,
     TheWeek,
-#    Yahoo,
 ]
 
 scraper_classes_politix_social = [
     BingTrendingOnFacebook,
-    # Breitbart,
-    # BuzzFeed,
     DailyKos,
     DrudgeReport,
     FoxNews,
-    # Gawker,
     HuffingtonPost,
     NewYorkTimes,
-    # PolicyMic,
     Politico,
     Reason,
     Reddit,
@@ -652,7 +632,6 @@ scraper_classes_politix_social = [
     Slate,
     TheAtlantic,
     TheBlazeSocial,
-    # ThinkProgressSocial,
     Upworthy,
     USAToday,
     WashingtonPost,
