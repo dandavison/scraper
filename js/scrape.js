@@ -820,6 +820,46 @@
 
   })(Scraper);
 
+  RedditWTF = (function(_super) {
+
+    __extends(RedditWTF, _super);
+
+    function RedditWTF() {
+      this.name = 'Reddit WTF';
+      this.domain = 'http://www.reddit.com';
+      this.url = '/r/WTF/';
+    }
+
+    RedditWTF.prototype.get_anchors = function() {
+      return {
+        'Hot': this.$(".entry a.title").toArray().slice(0, 10)
+      };
+    };
+
+    return RedditWTF;
+
+  })(Scraper);
+
+  RedditAww = (function(_super) {
+
+    __extends(RedditAww, _super);
+
+    function RedditAww() {
+      this.name = 'Reddit Aww';
+      this.domain = 'http://www.reddit.com';
+      this.url = '/r/aww/';
+    }
+
+    RedditAww.prototype.get_anchors = function() {
+      return {
+        'Hot': this.$(".entry a.title").toArray().slice(0, 10)
+      };
+    };
+
+    return RedditAww;
+
+  })(Scraper);
+
   _RollingStone = (function(_super) {
 
     __extends(_RollingStone, _super);

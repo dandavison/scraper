@@ -404,6 +404,26 @@ class Reddit extends Scraper
         'Hot': @$("#siteTable a.title").toArray()[0...10]
 
 
+class RedditWTF extends Scraper
+    constructor: ->
+        @name = 'Reddit WTF'
+        @domain = 'http://www.reddit.com'
+        @url = '/r/WTF/'
+
+    get_anchors: ->
+        'Hot': @$(".entry a.title").toArray()[0...10]
+
+
+class RedditAww extends Scraper
+    constructor: ->
+        @name = 'Reddit Aww'
+        @domain = 'http://www.reddit.com'
+        @url = '/r/aww/'
+
+    get_anchors: ->
+        'Hot': @$(".entry a.title").toArray()[0...10]
+
+
 class _RollingStone extends Scraper
     constructor: ->
         @name = '_Rolling Stone'
