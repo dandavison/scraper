@@ -260,7 +260,7 @@ class Guardian extends Scraper
 class Gawker extends Scraper
     constructor: ->
         @name = 'Gawker'
-        @domain = 'http://gawker.com/'
+        @domain = 'http://gawker.com'
 
     get_anchors: ->
         "Top Stories": @$('.sidebar-content .headline a')
@@ -660,7 +660,7 @@ if arg is "offbeat"
     scraper_classes = scraper_classes_offbeat
 else if arg is "politix"
     scraper_classes = scraper_classes_politix_social
-else if arg is "politix_all"
+else if arg is "politix-all"
     scraper_classes = scraper_classes_politix_all
 else
     throw new Error("Unrecognized argument: " + arg)

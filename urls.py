@@ -8,7 +8,8 @@ urlpatterns = patterns(
         'template_name': 'login.html'
     }),
 
-    url(r'^$', '_scraper.views.loading'),
+    url(r'^$', '_scraper.views.index'),
+    url(r'^scrapey/$', '_scraper.views.index'),
     url(r'^scrapey/(?P<sources>\w+)/$', '_scraper.views.loading'),
     url(r'^scraper/(?P<sources>\w+)/$', '_scraper.views.scraper'),
 

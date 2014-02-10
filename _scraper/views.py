@@ -17,6 +17,13 @@ SHELF_LIFE = timedelta(days=5)
 
 
 @login_required
+def index(request):
+    return render_to_response(
+        'index.html',
+        {})
+
+
+@login_required
 def loading(request, sources):
     return render_to_response(
         'loading.html',
@@ -103,7 +110,8 @@ def scraper(request, sources):
 
     return render_to_response(
         'scraper.html',
-        {'data': data})
+        {'data': data,
+         'sources': sources})
 
 
 def get_scrape_data(sources):
@@ -113,7 +121,7 @@ def get_scrape_data(sources):
     node = os.path.join(settings.SITE_DIRECTORY,
                         'bin/node')
 
-    assert sources in {'social', 'politix', 'offbeat'}
+    assert sources in {'politix', 'politix-all', 'offbeat'}
 
     scraper = Popen([node, scrape, sources], stdin=PIPE, stdout=PIPE)
     scraper.stdin.close()

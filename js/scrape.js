@@ -540,7 +540,7 @@
 
     function Gawker() {
       this.name = 'Gawker';
-      this.domain = 'http://gawker.com/';
+      this.domain = 'http://gawker.com';
     }
 
     Gawker.prototype.get_anchors = function() {
@@ -1219,7 +1219,7 @@
     scraper_classes = scraper_classes_offbeat;
   } else if (arg === "politix") {
     scraper_classes = scraper_classes_politix_social;
-  } else if (arg === "politix_all") {
+  } else if (arg === "politix-all") {
     scraper_classes = scraper_classes_politix_all;
   } else {
     throw new Error("Unrecognized argument: " + arg);

@@ -36,7 +36,7 @@
 
     <!-- Make it so that browser reload will hit the loading page -->
     <script type="text/javascript">
-      window.history.pushState({}, "", "{% url _scraper.views.loading %}");
+      window.history.pushState({}, "", "{% url _scraper.views.loading sources %}");
     </script>
 
   </body>
